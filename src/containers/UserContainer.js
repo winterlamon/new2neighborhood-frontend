@@ -6,7 +6,7 @@ class UserContainer extends React.Component {
   render() {
     return (
       <div>
-          I'm a div
+          This is the user container.
       </div>
     )
   }
