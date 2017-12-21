@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import './stylesheets/App.css';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import VenueList from './components/VenueList';
 import NavBar from './components/NavBar';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import About from './components/About';
+import Login from './components/Login';
+import UserContainer from './containers/UserContainer';
+
 
 
 
@@ -34,12 +39,16 @@ getVenues = () => {
 
   render() {
     return (
-      <div>
-        <MuiThemeProvider>
-          <NavBar />
+      <Router>
+        <div>
+        <NavBar />
+        <Route exact path="/" render={() => <h1>Welcome to New2Neighborhood</h1>} />
+        <Route exact path="/about" render={About} />
+        <Route exact path="/login" render={Login} />
+        <Route exact path="/dashboard" render={UserContainer} />
         <VenueList venues={this.state.venues}/>
-      </MuiThemeProvider>
       </div>
+    </Router>
     );
   }
 }
