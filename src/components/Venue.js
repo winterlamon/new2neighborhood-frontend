@@ -10,14 +10,13 @@ const Venue = (props) => {
         		title={props.venue.name}
         		reveal={
               <div>
-                <p>{props.venue.description}</p>
-                <p>{props.venue.address},
-                  {" " + props.venue.city},
-                  {" " + props.venue.state} {props.venue.postalCode}
-                </p>
-          </div>
+                {props.venue.url ? <p><a href={props.venue.url} target="_blank">Visit Website</a></p> : <div></div>}
+              </div>
         }>
-            {props.venue.url ? <p><a href={props.venue.url} target="_blank">Visit Website</a></p> : <div></div>}
+            <p>{props.venue.address}
+              {", " + props.venue.city}
+              {", " + props.venue.state} {props.venue.postalCode}
+            </p>
         </Card>
     </Row>
 
