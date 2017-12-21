@@ -7,9 +7,9 @@ import NavBar from './components/NavBar';
 
 
 class App extends Component {
-  // state = {
-  //   auth: {currentUser: {},
-  // }
+  state = {
+    venues: []
+  }
 
 // handleLogin = (user) => {
 //   const currentUser = {currentUser: user};
@@ -20,13 +20,24 @@ class App extends Component {
 //   localStorage.
 // }
 
+componentDidMount = () => {
+  this.getVenues()
+}
+
+
+getVenues = () => {
+  fetch('http://localhost:3000/venues')
+    .then(res => res.json())
+    .then(venues => this.setState({venues}))
+}
+
 
   render() {
     return (
       <div>
         <MuiThemeProvider>
           <NavBar />
-          <VenueList />
+        <VenueList venues={this.state.venues}/>
       </MuiThemeProvider>
       </div>
     );

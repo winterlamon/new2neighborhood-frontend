@@ -1,35 +1,20 @@
 import React from 'react';
+import Venue from './Venue';
 
-class VenueList extends React.Component {
-  // state = {
-  //   venues = []
-  // }
-  //
-  // componentDidMount = () => (
-  //   this.getVenues
-  // )
-  //
-  //
-  // getVenues = () => {
-  //   fetch('http://localhost:3000/venues')
-  //     .then(res => res.json())
-  //     .then(venues => this.setState({venues}))
-  // }
+const VenueList = (props) => {
 
-  render() {
+    console.log('venues from VenueList', props.venues)
+    // debugger
+
+    const allVenues = props.venues.map(venue => <Venue venue={venue} />)
     return (
       <div>
         <h3>Venue List</h3>
         <ul>
-          <li>I'm a venue!</li>
-          <li>I'm a venue!</li>
-          <li>I'm a venue!</li>
-          <li>I'm a venue!</li>
-          <li>I'm a venue!</li>
+          {allVenues}
         </ul>
       </div>
     )
-  }
 }
 
 export default VenueList
