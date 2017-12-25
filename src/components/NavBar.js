@@ -1,16 +1,18 @@
 import React from 'react';
 // import AppBar from 'material-ui/AppBar';
-import {Navbar} from 'react-materialize'
-import About from './About';
-import Login from './Login';
+import {Navbar, NavItem} from 'react-materialize'
+// import About from './About';
+// import Login from './Login';
 
 
 
 const NavBar = () => {
     return (
-      <Navbar brand='New2Neighborhood' right>
-        <About href='/about'>About</About>
-      	<Login href='/login'>Login</Login>
+      <Navbar className="cyan darken-2" brand='New2Neighborhood' right>
+        <NavItem href='/about'>About</NavItem>
+        <NavItem href='/dashboard'>Dashboard</NavItem>
+        <NavItem href='/login'>Login</NavItem>
+        <NavItem href='/signup'>Signup</NavItem>
       </Navbar>
 
     )

@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import './stylesheets/App.css';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import VenueList from './components/VenueList';
 import NavBar from './components/NavBar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import About from './components/About';
 import Login from './components/Login';
-import UserContainer from './containers/UserContainer';
+import Signup from './components/Signup';
 
-
+import DashboardContainer from './containers/DashboardContainer';
 
 
 class App extends Component {
   state = {
-    venues: []
+    venues: [],
+    user: []
   }
 
 // handleLogin = (user) => {
@@ -27,6 +26,7 @@ class App extends Component {
 
 componentDidMount = () => {
   this.getVenues()
+  this.getUsers()
 }
 
 
@@ -36,17 +36,23 @@ getVenues = () => {
     .then(venues => this.setState({venues}))
 }
 
+getUsers = () => {
+  fetch('http://localhost:3000/users')
+    .then(res => res.json())
+    .then(users => this.setState({users}))
+}
+
 
   render() {
     return (
       <Router>
         <div>
-        <NavBar />
-        <Route exact path="/" render={() => <h1>Welcome to New2Neighborhood</h1>} />
-        <Route exact path="/about" render={About} />
-        <Route exact path="/login" render={Login} />
-        <Route exact path="/dashboard" render={UserContainer} />
-        <VenueList venues={this.state.venues}/>
+            <NavBar />
+            <Route exact path="/" render={() => <h1>Welcome to New2Neighborhood</h1>} />
+            <Route exact path="/about" render={About} />
+          <Route exact path="/login" render={Login} className="login"/>
+            <Route exact path="/signup" render={Signup} />
+          <Route exact path="/dashboard" render={DashboardContainer} />
       </div>
     </Router>
     );

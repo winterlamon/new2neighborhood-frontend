@@ -1,5 +1,29 @@
+/* color scheme
+  blue: #35D4EA;
+  seafoam: #99DDDC;
+  tan-green: #DFE5C9;
+  orange: #FF8000;
+  bright-orange: #FF5E00; */
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  background-color: #DFE5C9;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Shrikhand', cursive;
+}
+
+.button {
+  background-color: #FF8000;
+}
+
+.navbar {
+  background-color: #35D4EA;
+}
+
+.login {
+  background-image: url("https://images.pexels.com/photos/374710/pexels-photo-374710.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb");
 }
