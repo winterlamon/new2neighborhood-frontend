@@ -1,5 +1,37 @@
+/* color scheme
+  blue: #35D4EA;
+  seafoam: #99DDDC;
+  tan-green: #DFE5C9;
+  orange: #FF8000;
+  bright-orange: #FF5E00; */
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Nunito', sans-serif;
+  background-color: #DFE5C9;
+  background: linear-gradient(
+                     rgba(200,200,200, .5),
+                     rgba(200,200,200, .5)),
+                     url("https://static.pexels.com/photos/302186/pexels-photo-302186.jpeg");
+  background-size: cover;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Shrikhand', cursive;
+}
+
+.card {
+  background-color: #f1f8e9;
+}
+
+.logo {
+  
+}
+
+.page-item {
+  background: #FFFFFF;
+  border-radius: 2px;
+  margin: 1rem;
+  padding: 1rem;
 }

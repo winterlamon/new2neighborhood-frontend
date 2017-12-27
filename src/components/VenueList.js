@@ -1,20 +1,19 @@
 import React from 'react';
 import Venue from './Venue';
+import {sampleVenues} from '../sampleData';
 
-const VenueList = (props) => {
 
-    console.log('venues from VenueList', props.venues)
-    // debugger
+const VenueList = () => {
 
-    const allVenues = props.venues.map(venue => <Venue venue={venue} />)
+    const allVenues = sampleVenues.map(venue => <Venue venue={venue} />)
+
     return (
-      <div>
+      <div className="page-item center">
         <h3>Venue List</h3>
-        <ul>
           {allVenues}
-        </ul>
       </div>
     )
 }
+
 
 export default VenueList

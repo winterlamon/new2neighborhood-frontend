@@ -1,15 +1,13 @@
 import React from 'react';
+import Profile from '../components/Profile';
 
-class UserContainer extends React.Component {
+const UserContainer = () => {
 
-
-  render() {
     return (
       <div>
-          This is the user container.
+        <Profile />
       </div>
     )
-  }
 }
 
 export default UserContainer

@@ -1,18 +1,20 @@
 import React from 'react';
-// import AppBar from 'material-ui/AppBar';
-import {Navbar} from 'react-materialize'
-import About from './About';
-import Login from './Login';
-
+import {Navbar, NavItem} from 'react-materialize'
 
 
 const NavBar = () => {
     return (
-      <Navbar brand='New2Neighborhood' right>
-        <About href='/about'>About</About>
-      	<Login href='/login'>Login</Login>
-      </Navbar>
+      <Navbar className="grey darken-4 logo" brand='New2Neighborhood' right>
+        <NavItem href='/'>Home</NavItem>
+        <NavItem href='/dashboard'>Dashboard</NavItem>
 
+      {/* We need to add logic for a signed in user... */}
+      {/* If no user is signed in... */}
+        <NavItem href='/login'>Login</NavItem>
+        <NavItem href='/signup'>Sign Up</NavItem>
+      {/* If a user is signed in... */}
+        <NavItem href='/'>Logout</NavItem>
+      </Navbar>
     )
 }
 
