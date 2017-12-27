@@ -4,7 +4,7 @@ import {Navbar, NavItem} from 'react-materialize'
 
 const NavBar = () => {
     return (
-      <Navbar className="grey darken-4" brand='New2Neighborhood' right>
+      <Navbar className="grey darken-4 logo" brand='New2Neighborhood' right>
         <NavItem href='/'>Home</NavItem>
         <NavItem href='/dashboard'>Dashboard</NavItem>
 

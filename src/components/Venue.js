@@ -1,10 +1,7 @@
 import React from 'react';
 import {Button, Card, CardTitle, Row} from 'react-materialize'
 
-// header={<CardTitle reveal waves='light'/>}
-
 const Venue = (props) => {
-    // console.log('venue url from Venue', props.venue.url)
     return (
       <div>
         <Row>
@@ -19,12 +16,11 @@ const Venue = (props) => {
                 {props.venue.url ? <p><a href={props.venue.url} target="_blank">Visit Website</a></p> : <div></div>}
               </div>
             </div>
-          }>
+          } actions={[<Button>Add to List</Button>]}>
           <p>{props.venue.address}
             {", " + props.venue.city}
             {", " + props.venue.state} {props.venue.postalCode}
           </p>
-          <Button>Add to List</Button>
         </Card>
       </Row>
 

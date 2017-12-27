@@ -7,8 +7,7 @@ const Profile = (props) => {
     return (
       <div className="page-item center">
         <div>
-          <h3>George Washington</h3>
-
+          <h3>Jordan Storms</h3>
         </div>
         <div>
           <h4>My Lists</h4>
