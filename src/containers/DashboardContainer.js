@@ -1,8 +1,8 @@
 import React from 'react';
+import {Col, Row} from 'react-materialize'
 import VenueContainer from './VenueContainer'
 import UserContainer from './UserContainer'
 
-import {Col, Row} from 'react-materialize'
 
 
 const DashboardContainer = () => {
@@ -10,7 +10,6 @@ const DashboardContainer = () => {
     return (
       <div>
         <Row>
-
         <div>
           <Col s={6}>
             <UserContainer />

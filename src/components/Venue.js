@@ -1,13 +1,14 @@
 import React from 'react';
-import {Card, CardTitle, Row} from 'react-materialize'
+import {Button, Card, CardTitle, Row} from 'react-materialize'
 
+// header={<CardTitle reveal waves='light'/>}
 
 const Venue = (props) => {
     // console.log('venue url from Venue', props.venue.url)
     return (
       <div>
         <Row>
-          <Card s={4} header={<CardTitle reveal waves='light'/>}
+          <Card className="card" header={<CardTitle reveal waves='light'/>}
           title={props.venue.name}
           reveal={
             <div>
@@ -17,13 +18,13 @@ const Venue = (props) => {
               <div>
                 {props.venue.url ? <p><a href={props.venue.url} target="_blank">Visit Website</a></p> : <div></div>}
               </div>
-
             </div>
           }>
           <p>{props.venue.address}
             {", " + props.venue.city}
             {", " + props.venue.state} {props.venue.postalCode}
           </p>
+          <Button>Add to List</Button>
         </Card>
       </Row>
 
