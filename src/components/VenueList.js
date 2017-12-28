@@ -5,7 +5,7 @@ import {sampleVenues} from '../sampleData';
 
 const VenueList = () => {
 
-    const allVenues = sampleVenues.map(venue => <Venue venue={venue} />)
+    const allVenues = sampleVenues.map(venue => < Venue venue={venue} />)
 
     return (
       <div className="page-item center">

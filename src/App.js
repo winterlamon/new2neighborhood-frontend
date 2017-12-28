@@ -11,7 +11,8 @@ import DashboardContainer from './containers/DashboardContainer';
 class App extends Component {
   state = {
     venues: [],
-    user: []
+    user: [],
+    coords: ''
   }
 
 // handleLogin = (user) => {
@@ -41,6 +42,19 @@ class App extends Component {
 //     .then(users => this.setState({users}))
 // }
 
+
+setCoords = (pos) => {
+  let coords = [pos.coords.latitude, pos.coords.longitude].join(',')
+  this.setState({ coords:  coords})
+}
+
+componentDidMount() {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(this.setCoords)
+  } else {
+    alert('This site requires Geolocation! Please reload and try again')
+  }
+}
 
   render() {
     return (
