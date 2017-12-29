@@ -10,15 +10,18 @@ import MapContainer from './containers/MapContainer';
 
 class App extends Component {
   state = {
+    auth: {currentUser: {}},
     venues: [],
     user: [],
     coords: ''
   }
 
-// handleLogin = (user) => {
-//   const currentUser = {currentUser: user};
-//   this.setState({auth: currentUser})
-// }
+handleLogin = user => {
+  const currentUser = {currentUser: user};
+  localStorage.setItem('token', user.token);
+
+  this.setState({auth: currentUser})
+}
 
 // handleLogout = () => {
 //   localStorage.
@@ -63,7 +66,17 @@ componentDidMount() {
           <NavBar />
           <Route exact path="/" render={Home} />
           <Route exact path="/home" render={Home} />
-          <Route exact path="/login" render={Login} />
+          <Route 
+            exact 
+            path="/login" 
+            component={ props => 
+              <Login 
+                {...props}
+                handleLogin={this.handleLogin} 
+                currentUser={this.state.auth.currentUser}
+              />
+            }
+          />            
           <Route exact path="/signup" render={Signup} />
           <Route exact path="/dashboard" render={DashboardContainer} />
           <Route exact path="/map" component={MapContainer} />
