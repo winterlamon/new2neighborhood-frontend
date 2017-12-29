@@ -4,7 +4,7 @@ import api from '../services/api';
 
 const Home = () => {
   // TESTING FETCHES TO API...REMOVE ME!!!
-  const fetchVenue = () => {
+  const fetchUser = () => {
     fetch('http://localhost:3001/auth', {
       method: 'post',
       headers: {'Content-Type': 'application/json', Accepts: 'application/json'},
@@ -34,7 +34,7 @@ const Home = () => {
           When I started Reynholm Industries, I had just two things in my possession: a dream and 6 million pounds. He's had quite an evening. Someone stole his wheelchair. Did you see who it was? Red bearded man. You can come down here any time and I'll be waiting for you! [slams down phone] That told her! Dear Sir stroke Madam. Fire, exclamation mark. Fire, exclamation mark. Help me, exclamation mark. 123 Carrendon Road. Looking forward to hearing from you. All the best, Maurice Moss. 0115... no... 0118... no... 0118 999 ... 3. Hello? Is this the emergency services? Then which country am I speaking to? Hello? Hello? No, no, that's the music you heard when it come on.
         </p>
         {/* TEST BUTTON...REMOVE ME*/}
-        <Button waves='light' node='a' onClick={testVenues}>Test</Button>
+        <Button waves='light' node='a' onClick={fetchUser}>Test</Button>
         <div>
           <Row className="center">
             <Col s={3} ></Col>

@@ -7,7 +7,7 @@ const NavBar = () => {
       <Navbar className="grey darken-4 logo" brand='New2Neighborhood' right>
         <NavItem href='/'>Home</NavItem>
         <NavItem href='/dashboard'>Dashboard</NavItem>
-
+        <NavItem href='/map'>Map</NavItem>
       {/* We need to add logic for a signed in user... */}
       {/* If no user is signed in... */}
         <NavItem href='/login'>Login</NavItem>

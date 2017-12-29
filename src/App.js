@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import DashboardContainer from './containers/DashboardContainer';
-
+import MapContainer from './containers/MapContainer';
 
 class App extends Component {
   state = {
@@ -66,6 +66,7 @@ componentDidMount() {
           <Route exact path="/login" render={Login} />
           <Route exact path="/signup" render={Signup} />
           <Route exact path="/dashboard" render={DashboardContainer} />
+          <Route exact path="/map" component={MapContainer} />
       </div>
     </Router>
     );
