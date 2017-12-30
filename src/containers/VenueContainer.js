@@ -33,15 +33,21 @@ class VenueContainer extends React.Component {
     }
   }
 
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
   render() {
-    console.log('venues', this.state.venues)
     return (
       <div>
         <VenueList 
           venues={this.state.venues}
           buttonHandler={this.buttonHandler} 
+          handleChange={this.handleChange}
           lat={this.state.lat} 
           lng={this.state.lng}
+          radius={this.state.radius}
+          section={this.state.section}
         />
       </div>
     )

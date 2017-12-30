@@ -5,7 +5,7 @@ import Venue from './Venue';
 
 
 const VenueList = props => {
-  const {venues, buttonHandler, lat, lng} = props
+  const {venues, buttonHandler, handleChange, lat, lng, radius, section} = props
 
   const allVenues = venues.map(venue => <Venue key={venue.id.toString()} venue={venue}/>)
 
@@ -21,17 +21,19 @@ const VenueList = props => {
           </Row>
           <Row>
             <Col s={6}>
-            	<Input s={12} type='select' label="Distance" defaultValue='1'>
+            	<Input s={12} onChange={handleChange} name="radius" type='select' label="Distance" value={radius}>
             		<option value='1'>1 mile</option>
-                <option value='2'>5 miles</option>
-                <option value='3'>10 miles</option>
-                <option value='4'>25 miles</option>
-                <option value='5'>50 miles</option>
+                <option value='5'>5 miles</option>
+                <option value='10'>10 miles</option>
+                <option value='25'>25 miles</option>
+                <option value='50'>50 miles</option>
             	</Input>
             </Col>
             <Col s={6}>
-              <Input name='category' type='radio' value='food' label='Food' checked/>
-              <Input name='category' type='radio' value='drink' label='Drink' />
+              <Input s={12} onChange={handleChange} name="section" type='select' label="Search for" value={section}>
+                <option value='food'>Food</option>
+                <option value='drinks'>Drinks</option>
+              </Input>
             </Col>
           </Row>
           <Row>
