@@ -7,13 +7,16 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import DashboardContainer from './containers/DashboardContainer';
 import MapContainer from './containers/MapContainer';
+// import api from './services/api'
 
 class App extends Component {
   state = {
     auth: {currentUser: {}},
     venues: [],
     user: [],
-    coords: ''
+    coords: '',
+    lat: '',
+    lng: ''
   }
 
 handleLogin = user => {
@@ -47,8 +50,10 @@ handleLogin = user => {
 
 
 setCoords = (pos) => {
-  let coords = [pos.coords.latitude, pos.coords.longitude].join(',')
-  this.setState({ coords:  coords})
+  let lat = pos.coords.latitude
+  let lng = pos.coords.longitude
+  let coords = [lat, lng].join(',')
+  this.setState({ coords: coords, lat: lat, lng: lng})
 }
 
 componentDidMount() {
@@ -57,15 +62,18 @@ componentDidMount() {
   } else {
     alert('This site requires Geolocation! Please reload and try again')
   }
+  // api.venues.searchVenues
 }
 
   render() {
+    console.log(this.state)
     return (
       <Router>
         <div>
           <NavBar />
           <Route exact path="/" render={Home} />
           <Route exact path="/home" render={Home} />
+          
           <Route 
             exact 
             path="/login" 
@@ -77,8 +85,22 @@ componentDidMount() {
               />
             }
           />            
+          
           <Route exact path="/signup" render={Signup} />
-          <Route exact path="/dashboard" render={DashboardContainer} />
+          
+          <Route 
+            exact 
+            path= "/dashboard" 
+            component={ props =>
+              < DashboardContainer 
+                {...props}
+                coords={this.state.coords}
+                lat={this.state.lat}
+                lng={this.state.lng}
+              />
+            }
+          />
+          
           <Route exact path="/map" component={MapContainer} />
       </div>
     </Router>

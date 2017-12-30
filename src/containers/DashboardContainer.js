@@ -5,8 +5,7 @@ import UserContainer from './UserContainer'
 
 
 
-const DashboardContainer = () => {
-
+const DashboardContainer = props => {
     return (
       <div>
         <Row>
@@ -17,7 +16,11 @@ const DashboardContainer = () => {
         </div>
         <div>
           <Col s={6}>
-            <VenueContainer />
+            <VenueContainer 
+              coords={props.coords}
+              lat={props.lat} 
+              lng={props.lng}
+            />
         </Col>
         </div>
       </Row>

@@ -9,11 +9,13 @@ const headers = {
 }
 
 const searchVenues = (lat, lon, radius, selection) => {
+    return(
     fetch(`${API_ROOT}/venues`, 
         {method: 'POST', 
         headers: headers,
         body: JSON.stringify({lat: lat, lon: lon, radius: radius, selection: selection})
-    }).then(res => res.json()).then(console.log)
+    }).then(res => res.json())
+    )
 }
 
 const login = (username, password) => {
@@ -21,7 +23,7 @@ const login = (username, password) => {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({ username, password })
-    }).then(res => res.json());
+    }).then(res => res.json())
   };
 
   const getCurrentUser = () => {
