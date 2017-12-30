@@ -5,7 +5,7 @@ import Venue from './Venue';
 
 
 const VenueList = props => {
-  const {venues, buttonHandler, handleChange, lat, lng, radius, section} = props
+  const {venues, buttonHandler, handleChange, radius, section} = props
 
   const allVenues = venues.map(venue => <Venue key={venue.id.toString()} venue={venue}/>)
 

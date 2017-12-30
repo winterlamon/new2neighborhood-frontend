@@ -2,20 +2,26 @@ import React from 'react';
 import Map from '../components/Map'
 
 class MapContainer extends React.Component {
+    
     state = {
-         markers : [
-             {lat: 40.7021601, lng: -74.0149907 },
-             {lat: 40.7033, lng: -74.011034},
-             {lat: 40.7089645,lng: -74.0114969}
-        ]
-
+        venues: this.props.venues,
+        lat: this.props.lat,
+        lng: this.props.lng,
+        markers: [{lat: this.props.lat, lng: this.props.lng}]
     }
+ 
+
+
     render() {
+        debugger
+        console.log('markers', this.state.markers)
         return(
             <div>
                <Map markers={this.state.markers}
-                    containerElement={<div style={{ height: `500px` }} />}
-                    mapElement={<div style={{ height: `100%`, width: `50%`}} />}
+                    lat={this.state.lat}
+                    lng={this.state.lng}
+                    containerElement={<div style={{ height: `600px` }} />}
+                    mapElement={<div style={{ height: `90%`, width: `98%`}} />}
                 />
             </div>
 

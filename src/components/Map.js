@@ -8,7 +8,7 @@ import {
   const Map = withGoogleMap(props =>
     <GoogleMap
       defaultZoom={15}
-      defaultCenter={{ lat: 40.704069, lng: -74.0132413 }}
+      defaultCenter={{ lat: props.lat, lng: props.lng }}
     >
     {props.markers.map(mark => {
         return(
