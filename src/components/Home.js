@@ -3,13 +3,13 @@ import {Button, Col, Row} from 'react-materialize';
 // import api from '../services/api';
 
 const Home = () => {
-  
-  // TESTING FETCHES TO API...REMOVE ME!!!
+
+  // // TESTING FETCHES TO API...REMOVE ME!!!
   // const fetchUser = () => {
   //   fetch('http://localhost:3001/auth', {
   //     method: 'post',
   //     headers: {'Content-Type': 'application/json', Accepts: 'application/json'},
-  //     body: JSON.stringify({'username': 'samadams@email.com', 'password': 'password'})
+  //     body: JSON.stringify({'username': 'jordan@storms.com', 'password': '123'})
   //   })
   //   .then(res => res.json())
   //   .then(console.log)

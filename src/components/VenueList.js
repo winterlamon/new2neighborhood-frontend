@@ -1,14 +1,15 @@
 import React from 'react';
-import {Col, Input, Row} from 'react-materialize'
+import {Col, Input, Row, Button} from 'react-materialize'
 import Venue from './Venue';
 import {sampleVenues} from '../sampleData';
 
 
-const VenueList = () => {
+const VenueList = props => {  
+  const {venues, buttonHandler, lat, lng} = props
 
-    const allVenues = sampleVenues.map(venue => <Venue venue={venue} />)
-
-    return (
+  const allVenues = venues.map(venue => <Venue venue={venue}/>)
+  
+  return (
       <div className="page-item center">
         <h3>Venues</h3>
         <div>
@@ -29,12 +30,21 @@ const VenueList = () => {
             	</Input>
             </Col>
             <Col s={6}>
-              <Input name='category' type='radio' value='food' label='Food' />
+              <Input name='category' type='radio' value='food' label='Food' checked/>
               <Input name='category' type='radio' value='drink' label='Drink' />
             </Col>
           </Row>
+          <Row>
+            <p>Search by current location or by an address</p>
+            <Col offset="s3">
+              <Button onClick={buttonHandler} name="Location">Location</Button>
+            </Col>
+            <Col>
+              <Button>Address</Button>
+            </Col>
+          </Row>
         </div>
-          {allVenues}
+        {allVenues}
       </div>
     )
 }

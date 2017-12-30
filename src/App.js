@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import DashboardContainer from './containers/DashboardContainer';
-// import MapContainer from './containers/MapContainer';
+import MapContainer from './containers/MapContainer';
 import api from './services/api'
 
 
@@ -17,13 +17,14 @@ class App extends Component {
       currentUser: {}},
     venues: [],
     user: [],
-    coords: ''
+    coords: '',
+    lat: '',
+    lng: ''
   }
 
 handleLogin = user => {
   const currentUser = {currentUser: user};
   localStorage.setItem('token', user.token);
-
   this.setState({auth: currentUser})
 }
 
@@ -41,8 +42,10 @@ handleLogout = () => {
 // }
 
 setCoords = (pos) => {
-  let coords = [pos.coords.latitude, pos.coords.longitude].join(',')
-  this.setState({ coords:  coords})
+  let lat = pos.coords.latitude
+  let lng = pos.coords.longitude
+  let coords = [lat, lng].join(',')
+  this.setState({ coords: coords, lat: lat, lng: lng})
 }
 
 componentDidMount() {
@@ -51,9 +54,11 @@ componentDidMount() {
   } else {
     alert('This site requires Geolocation! Please reload and try again.')
   }
+  // api.venues.searchVenues
 }
 
   render() {
+    console.log(this.state)
     return (
       <Router>
         <div>
@@ -84,20 +89,25 @@ componentDidMount() {
               />
             }
           />
+
           <Route
             exact
             path="/dashboard"
-            render={ props =>
+            component={ props =>
               // return this.state.auth.isLoggedIn ?
               <DashboardContainer
                 {...props}
                 currentUser={this.state.auth.currentUser}
+                coords={this.state.coords}
+                lat={this.state.lat}
+                lng={this.state.lng}
               />
             // :
             //   console.log('isLoggedIn returned false')
               // <Redirect to="/login"/>
             }
           />
+          <Route exact path="/map" component={MapContainer} />
       </div>
     </Router>
     );
