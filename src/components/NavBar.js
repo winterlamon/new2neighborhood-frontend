@@ -12,7 +12,6 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar className="grey darken-4 logo" brand='New2Neighborhood' right>
-            <NavItem href='/'>Home</NavItem>
             {loggedIn ? (
               <div>
                 {console.log(`${this.props.currentUser.username} is logged in.`)}
@@ -20,6 +19,7 @@ class NavBar extends React.Component {
             ) : null}
             {loggedIn ? (
               <div>
+                <NavItem href='/'>Home</NavItem>
                 <NavItem href='/dashboard'>Dashboard</NavItem>
                 <NavItem onClick={() => {
                   this.props.history.push('/login');
@@ -28,6 +28,7 @@ class NavBar extends React.Component {
               </div>
             ) : (
               <div>
+                <NavItem href='/'>Home</NavItem>
                 <NavItem href='/signup'>Sign Up</NavItem>
                 <NavItem href='/login'>Log In</NavItem>
               </div>
