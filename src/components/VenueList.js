@@ -1,14 +1,14 @@
 import React from 'react';
 import {Col, Input, Row, Button} from 'react-materialize'
 import Venue from './Venue';
-import {sampleVenues} from '../sampleData';
+// import {sampleVenues} from '../sampleData';
 
 
-const VenueList = props => {  
+const VenueList = props => {
   const {venues, buttonHandler, lat, lng} = props
 
-  const allVenues = venues.map(venue => <Venue venue={venue}/>)
-  
+  const allVenues = venues.map(venue => <Venue key={venue.id.toString()} venue={venue}/>)
+
   return (
       <div className="page-item center">
         <h3>Venues</h3>
