@@ -8,6 +8,7 @@ import api from '../services/api';
 class DashboardContainer extends React.Component {
   state = {
     venues: [],
+    markers: [{lat: this.props.lat, lng: this.props.lng}],
     lat: this.props.lat,
     lng: this.props.lng,
     radius: '1',
@@ -21,12 +22,14 @@ class DashboardContainer extends React.Component {
       this.state.radius, 
       this.state.section
     )
-      .then(d => {
-        this.setState({
-          venues: d
+    .then(d => {
+      let markers = d.map(venue => { return {lat: venue.lat, lng: venue.lng}})
+      this.setState({
+        venues: d,
+        markers: markers
         })
       })
-  }
+    }
 
   buttonHandler = event => {
     if(event.target.name === "Location") {
@@ -39,6 +42,7 @@ class DashboardContainer extends React.Component {
   }
 
   render() {
+    console.log(this.state.markers)
     return (
       <div>
         <Row>
@@ -59,6 +63,7 @@ class DashboardContainer extends React.Component {
           <Col s={6}>
             <MapContainer 
               venues={this.state.venues}
+              markers={this.state.markers}
               lat={this.state.lat}
               lng={this.state.lng}
             />

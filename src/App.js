@@ -55,13 +55,10 @@ componentDidMount() {
 }
 
   render() {
-<<<<<<< HEAD
-=======
     // console.log(this.state)
 
     const loggedIn = !!this.state.auth.currentUser.id;
 
->>>>>>> 9d0ac8eaa951f118a4ed347b97cae8e64dbc3aa3
     return (
       <Router>
         <div>
