@@ -55,8 +55,6 @@ componentDidMount() {
 }
 
   render() {
-    // console.log(this.state)
-
     const loggedIn = !!this.state.auth.currentUser.id;
 
     return (

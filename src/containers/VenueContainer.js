@@ -9,6 +9,10 @@ const VenueContainer = props => {
         venues={props.venues}
         buttonHandler={props.buttonHandler} 
         handleChange={props.handleChange}
+        address={props.address}
+        city={props.city}
+        state={props.state}
+        zip={props.zip}
         lat={props.lat} 
         lng={props.lng}
         radius={props.radius}

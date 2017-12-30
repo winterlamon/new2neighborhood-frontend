@@ -11,12 +11,16 @@ class DashboardContainer extends React.Component {
     markers: [{lat: this.props.lat, lng: this.props.lng}],
     lat: this.props.lat,
     lng: this.props.lng,
+    address: '',
+    city: '', 
+    state: '',
+    zip: '',
     radius: '1',
     section: 'food'
   }
 
-  getVenues = () => {
-    api.venues.searchVenues(
+  getVenuesByLocation = () => {
+    api.venues.searchVenuesByLocation(
       this.state.lat.toString(), 
       this.state.lng.toString(), 
       this.state.radius, 
@@ -31,9 +35,30 @@ class DashboardContainer extends React.Component {
       })
     }
 
+  getVenuesByAddress = () => {
+    api.venues.searchVenuesByAddress(
+      this.state.address,
+      this.state.city,
+      this.state.state,
+      this.state.zip,
+      this.state.radius, 
+      this.state.section
+    )
+    .then(d => {
+      let markers = d.map(venue => { return {lat: venue.lat, lng: venue.lng}})
+      this.setState({
+        venues: d,
+        markers: markers
+        })
+      })
+    }
+  
+
   buttonHandler = event => {
     if(event.target.name === "Location") {
-      this.getVenues()
+      this.getVenuesByLocation()
+    } else {
+      this.getVenuesByAddress()
     }
   }
 
@@ -42,7 +67,6 @@ class DashboardContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.markers)
     return (
       <div>
         <Row>
@@ -52,6 +76,10 @@ class DashboardContainer extends React.Component {
               venues={this.state.venues}
               buttonHandler={this.buttonHandler} 
               handleChange={this.handleChange}
+              address={this.state.address}
+              city={this.state.city}
+              state={this.state.state}
+              zip={this.state.zip}
               lat={this.state.lat} 
               lng={this.state.lng}
               radius={this.state.radius}

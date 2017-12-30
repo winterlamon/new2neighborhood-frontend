@@ -13,7 +13,7 @@ import {
       >
       {props.markers.map(mark => {
           return(
-          <Marker position={{lat: mark.lat, lng: mark.lng}} />
+          <Marker position={{lat: mark.lat, lng: mark.lng}}/>
           )
       })}
       </GoogleMap>
