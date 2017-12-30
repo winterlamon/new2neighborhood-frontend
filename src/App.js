@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './stylesheets/App.css';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import DashboardContainer from './containers/DashboardContainer';
-import MapContainer from './containers/MapContainer';
+// import MapContainer from './containers/MapContainer';
+import api from './services/api'
+
 
 class App extends Component {
   state = {
-    auth: {currentUser: {}},
+    auth: {
+      isLoggedIn: false,
+      currentUser: {}},
     venues: [],
     user: [],
     coords: ''
@@ -23,28 +27,18 @@ handleLogin = user => {
   this.setState({auth: currentUser})
 }
 
-// handleLogout = () => {
-//   localStorage.
+handleLogout = () => {
+    localStorage.removeItem('token');
+    this.setState({ auth: { currentUser: {} } });
+  };
+
+// handleSignup = user => {
+//   console.log('handleSignup in APP')
+//   const currentUser = {currentUser: user};
+//   localStorage.setItem('token', user.token);
+//
+//   this.setState({auth: currentUser})
 // }
-
-// componentDidMount = () => {
-//   this.getVenues()
-//   // this.getUsers()
-// }
-
-
-// getVenues = () => {
-//   fetch('http://localhost:3000/venues')
-//     .then(res => res.json())
-//     .then(venues => this.setState({venues}))
-// }
-
-// getUsers = () => {
-//   fetch('http://localhost:3000/users')
-//     .then(res => res.json())
-//     .then(users => this.setState({users}))
-// }
-
 
 setCoords = (pos) => {
   let coords = [pos.coords.latitude, pos.coords.longitude].join(',')
@@ -55,7 +49,7 @@ componentDidMount() {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(this.setCoords)
   } else {
-    alert('This site requires Geolocation! Please reload and try again')
+    alert('This site requires Geolocation! Please reload and try again.')
   }
 }
 
@@ -63,23 +57,47 @@ componentDidMount() {
     return (
       <Router>
         <div>
-          <NavBar />
+          <NavBar
+            currentUser={this.state.auth.currentUser}
+            handleLogout={this.handleLogout}
+          />
           <Route exact path="/" render={Home} />
-          <Route exact path="/home" render={Home} />
-          <Route 
-            exact 
-            path="/login" 
-            component={ props => 
-              <Login 
+          <Route
+            exact
+            path="/login"
+            component={ props =>
+              <Login
                 {...props}
-                handleLogin={this.handleLogin} 
+                handleLogin={this.handleLogin}
                 currentUser={this.state.auth.currentUser}
               />
             }
-          />            
-          <Route exact path="/signup" render={Signup} />
-          <Route exact path="/dashboard" render={DashboardContainer} />
-          <Route exact path="/map" component={MapContainer} />
+          />
+          <Route
+            exact
+            path="/signup"
+            component={ props =>
+              <Signup
+                {...props}
+                handleSignup={api.auth.signup}
+                currentUser={this.state.auth.currentUser}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/dashboard"
+            render={ props =>
+              // return this.state.auth.isLoggedIn ?
+              <DashboardContainer
+                {...props}
+                currentUser={this.state.auth.currentUser}
+              />
+            // :
+            //   console.log('isLoggedIn returned false')
+              // <Redirect to="/login"/>
+            }
+          />
       </div>
     </Router>
     );

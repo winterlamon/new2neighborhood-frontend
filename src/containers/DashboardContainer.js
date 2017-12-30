@@ -4,15 +4,14 @@ import VenueContainer from './VenueContainer'
 import UserContainer from './UserContainer'
 
 
-
-const DashboardContainer = () => {
+const DashboardContainer = (props) => {
 
     return (
       <div>
         <Row>
         <div>
           <Col s={6}>
-            <UserContainer />
+            <UserContainer currentUser={props.currentUser}/>
           </Col>
         </div>
         <div>

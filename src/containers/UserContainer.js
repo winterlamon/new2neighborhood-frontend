@@ -1,11 +1,11 @@
 import React from 'react';
 import Profile from '../components/Profile';
 
-const UserContainer = () => {
+const UserContainer = (props) => {
 
     return (
       <div>
-        <Profile />
+        <Profile currentUser={props.currentUser}/>
       </div>
     )
 }

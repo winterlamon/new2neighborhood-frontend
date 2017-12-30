@@ -6,10 +6,10 @@ class Login extends React.Component {
   state ={
     error: false,
     fields: {
-      username: '', 
+      username: '',
       password: ''
     }
-    
+
   }
   handleChange = event => {
     const newField = {...this.state.fields, [event.target.name]: event.target.value}
@@ -24,13 +24,12 @@ class Login extends React.Component {
           this.setState({ error: true });
         } else {
           this.props.handleLogin(res);
-          this.props.history.push('/');
+          this.props.history.push('/dashboard');
         }
       })
   }
 
   render(){
-    console.log(this.props)
     const { fields } = this.state
 
     return (
@@ -40,25 +39,25 @@ class Login extends React.Component {
           <Col s={6} className="page-item center" >
             <h3>Welcome Back!</h3>
               <Row>
-                <Input 
-                  s={12} 
+                <Input
+                  s={12}
                   name="username"
-                  className="center" 
-                  type="email" 
-                  label="Email" 
+                  className="center"
+                  type="email"
+                  label="Email"
                   placeholder="email"
                   value={fields.username}
                   onChange={this.handleChange}
                 />
-                <Input 
-                  s={12} 
+                <Input
+                  s={12}
                   name="password"
-                  className="center" 
-                  type="password" 
+                  className="center"
+                  type="password"
                   label="Password"
                   placeholder="password"
                   value={fields.password}
-                  onChange={this.handleChange}               
+                  onChange={this.handleChange}
                 />
               <Button onClick={this.handleSubmit} waves='light' node='a'>Log In</Button>
             </Row>
