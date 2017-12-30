@@ -45,7 +45,6 @@ class Login extends React.Component {
                   className="center"
                   type="email"
                   label="Email"
-                  placeholder="email"
                   value={fields.username}
                   onChange={this.handleChange}
                 />
@@ -55,7 +54,6 @@ class Login extends React.Component {
                   className="center"
                   type="password"
                   label="Password"
-                  placeholder="password"
                   value={fields.password}
                   onChange={this.handleChange}
                 />
