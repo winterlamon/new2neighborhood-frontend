@@ -5,13 +5,22 @@ import { withRouter } from 'react-router-dom'
 
 class NavBar extends React.Component {
 
+
+  handleClick = (event) => {
+    event.preventDefault()
+  }
+
   render() {
 
     const loggedIn = !!this.props.currentUser.id;
 
     return (
       <div>
-        <Navbar className="grey darken-4 logo" brand='New2Neighborhood' right>
+        <Navbar
+          className="grey darken-4 logo"
+          brand='New2Neighborhood'
+          // onClick={this.handleClick}
+          right>
             {loggedIn ? (
               <div>
                 {console.log(`${this.props.currentUser.username} is logged in.`)}
@@ -19,8 +28,8 @@ class NavBar extends React.Component {
             ) : null}
             {loggedIn ? (
               <div>
-                <NavItem href='/'>Home</NavItem>
-                <NavItem href='/dashboard'>Dashboard</NavItem>
+                {/* <NavItem href='/'>Home</NavItem>
+                <NavItem href='/dashboard'>Dashboard</NavItem> */}
                 <NavItem onClick={() => {
                   this.props.history.push('/login');
                   this.props.handleLogout();
