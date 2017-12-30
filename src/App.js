@@ -13,7 +13,6 @@ import api from './services/api'
 class App extends Component {
   state = {
     auth: {
-      isLoggedIn: false,
       currentUser: {}},
     venues: [],
     user: [],
@@ -58,7 +57,10 @@ componentDidMount() {
 }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
+
+    const loggedIn = !!this.state.auth.currentUser.id;
+
     return (
       <Router>
         <div>
@@ -89,23 +91,25 @@ componentDidMount() {
               />
             }
           />
-
           <Route
             exact
             path="/dashboard"
-            component={ props =>
-              // return this.state.auth.isLoggedIn ?
-              <DashboardContainer
+            component={ props => {
+              return loggedIn ?
+              (
+                <DashboardContainer
                 {...props}
                 currentUser={this.state.auth.currentUser}
                 coords={this.state.coords}
                 lat={this.state.lat}
                 lng={this.state.lng}
               />
-            // :
-            //   console.log('isLoggedIn returned false')
-              // <Redirect to="/login"/>
-            }
+              ) : (
+              console.log('loggedIn returned false'),
+              alert('Whoops! You must be logged in to access the dashboard.'),
+              <Redirect to="/login"/>
+              )
+            }}
           />
           <Route exact path="/map" component={MapContainer} />
       </div>
