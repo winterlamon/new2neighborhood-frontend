@@ -31,7 +31,9 @@ const login = (username, password) => {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({ firstName, lastName, username, password })
-      }).then(res => res.json());
+      })
+      .then(res => res.json())
+      .then(console.log)
     };
 
   const getCurrentUser = () => {
