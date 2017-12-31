@@ -5,7 +5,7 @@ import Venue from './Venue';
 
 
 const VenueList = props => {
-  const {venues, buttonHandler, handleChange, lat, lng, radius, section} = props
+  const { venues, buttonHandler, handleChange, address, city, state, zip, radius, section} = props
 
   const allVenues = venues.map(venue => <Venue key={venue.id.toString()} venue={venue}/>)
 
@@ -14,10 +14,10 @@ const VenueList = props => {
         <h3>Venues</h3>
         <div>
           <Row>
-            <Input className="center" s={12} placeholder="123 Main Street" label="Street" value="" />
-            <Input className="center" s={6} placeholder="New York" label="City" value="" />
-            <Input className="center" s={3} placeholder="NY" label="State" value="" />
-            <Input className="center" s={3} placeholder="10011" label="Zip" value="" />
+            <Input onChange={handleChange} name="address" className="center" s={12} placeholder="123 Main Street" label="Street" value={address} />
+            <Input onChange={handleChange} name="city" className="center" s={6} placeholder="New York" label="City" value={city}/>
+            <Input onChange={handleChange} name="state" className="center" s={3} placeholder="NY" label="State" value={state}/>
+            <Input onChange={handleChange} name="zip" className="center" s={3} placeholder="10011" label="Zip" value={zip} />
           </Row>
           <Row>
             <Col s={6}>
@@ -42,7 +42,7 @@ const VenueList = props => {
               <Button onClick={buttonHandler} name="Location">Location</Button>
             </Col>
             <Col>
-              <Button>Address</Button>
+              <Button onClick={buttonHandler} name="Adress">Address</Button>
             </Col>
           </Row>
         </div>

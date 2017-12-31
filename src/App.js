@@ -16,7 +16,6 @@ class App extends Component {
       currentUser: {}},
     venues: [],
     user: [],
-    coords: '',
     lat: '',
     lng: ''
   }
@@ -43,8 +42,7 @@ handleLogout = () => {
 setCoords = (pos) => {
   let lat = pos.coords.latitude
   let lng = pos.coords.longitude
-  let coords = [lat, lng].join(',')
-  this.setState({ coords: coords, lat: lat, lng: lng})
+  this.setState({ lat: lat, lng: lng})
 }
 
 componentDidMount() {
@@ -57,8 +55,6 @@ componentDidMount() {
 }
 
   render() {
-    // console.log(this.state)
-
     const loggedIn = !!this.state.auth.currentUser.id;
 
     return (

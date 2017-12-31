@@ -8,13 +8,23 @@ const headers = {
     Authorization: token
 }
 
-const searchVenues = (lat, lon, radius, selection) => {
+const searchVenuesByLocation = (lat, lon, radius, selection) => {
     return(
-    fetch(`${API_ROOT}/venues`,
-        {method: 'POST',
-        headers: headers,
-        body: JSON.stringify({lat: lat, lon: lon, radius: radius, selection: selection})
-    }).then(res => res.json())
+        fetch(`${API_ROOT}/venues`,
+            {method: 'POST',
+            headers: headers,
+            body: JSON.stringify({lat: lat, lon: lon, radius: radius, selection: selection})
+        }).then(res => res.json())
+    )
+}
+
+const searchVenuesByAddress = (address, city, state, zip, radius, selection) => {
+    return(
+        fetch(`${API_ROOT}/venues`,
+            {method: 'POST',
+            headers: headers,
+            body: JSON.stringify({address: address, city: city, state: state, zip: zip, radius: radius, selection: selection})
+        }).then(res => res.json())     
     )
 }
 
@@ -50,6 +60,7 @@ export default {
         signup
     },
     venues: {
-        searchVenues
+        searchVenuesByAddress,
+        searchVenuesByLocation
     }
 }
