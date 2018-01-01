@@ -8,7 +8,7 @@ import api from '../services/api';
 class DashboardContainer extends React.Component {
   state = {
     venues: [],
-    markers: [{lat: this.props.lat, lng: this.props.lng}],
+    markers: [],
     lat: this.props.lat,
     lng: this.props.lng,
     address: '',
