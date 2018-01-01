@@ -9,11 +9,16 @@ import {
     return (
       <GoogleMap
         defaultZoom={15}
-        defaultCenter={{ lat: props.lat, lng: props.lng }}
+        center={{ lat: props.lat, lng: props.lng }}
       >
-      {props.markers.map(mark => {
+      {props.markers.map((mark,index) => {
           return(
-          <Marker position={{lat: mark.lat, lng: mark.lng}}/>
+          
+          <Marker 
+            key={index} 
+            position={{lat: mark.lat, lng: mark.lng}} 
+            // icon={{ url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'}}
+          />
           )
       })}
       </GoogleMap>
