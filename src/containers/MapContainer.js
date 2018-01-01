@@ -3,12 +3,12 @@ import Map from '../components/Map'
 
 const MapContainer = props => {
     return(
-        <div>
+        <div className="page-item center">
             <Map markers={props.markers}
                 lat={props.lat}
                 lng={props.lng}
-                containerElement={<div style={{ height: `600px` }} />}
-                mapElement={<div style={{ height: `90%`, width: `98%`}} />}
+                containerElement={<div style={{ height: `500px` }} />}
+                mapElement={<div style={{ height: `100%`, width: `100%`}} />}
             />
         </div>
 
