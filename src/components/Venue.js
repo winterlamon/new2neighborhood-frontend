@@ -7,18 +7,7 @@ const Venue = (props) => {
         <Row>
           <Card
             className="card"
-            // header={<CardTitle reveal waves='light'/>}
-            title={props.venue.name}
-            // reveal={
-            //   <div>
-            //     <div>
-            //       {props.venue.description ? <p>{props.venue.description}</p> : <div></div>}
-            //     </div>
-            //     <div>
-            //       {props.venue.url ? <p><a href={props.venue.url} target="_blank">Visit Website</a></p> : <div></div>}
-            //     </div>
-            //   </div>
-            // }
+            title={props.venue.name}  
             actions={[<Button>Add to List</Button>]}>
           <p>{props.venue.address}
             {", " + props.venue.city}

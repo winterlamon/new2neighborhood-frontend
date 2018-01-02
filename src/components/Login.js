@@ -9,8 +9,8 @@ class Login extends React.Component {
       username: '',
       password: ''
     }
-
   }
+  
   handleChange = event => {
     const newField = {...this.state.fields, [event.target.name]: event.target.value}
     this.setState({ fields: newField })

@@ -46,12 +46,11 @@ setCoords = (pos) => {
 }
 
 componentDidMount() {
-  if(navigator.geolocation) {
+  if(navigator.geolocation  && this.state.auth.currentUser.id) {
     navigator.geolocation.getCurrentPosition(this.setCoords)
   } else {
     alert('This site requires Geolocation! Please reload and try again.')
   }
-  // api.venues.searchVenues
 }
 
   render() {
