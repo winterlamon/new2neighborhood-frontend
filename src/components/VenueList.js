@@ -8,7 +8,7 @@ const VenueList = props => {
   const { venues, buttonHandler, handleChange, 
           address, city, state, zip, radius, section, searched} = props
 
-  const allVenues = venues.map(venue => <Venue key={venue.id.toString()} venue={venue}/>)
+  const allVenues = venues.map(venue => <Venue key={"venue-" + venue.id.toString()} venue={venue} currentUser={props.currentUser} />)
 
   return (
       <div className="page-item center">

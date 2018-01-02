@@ -60,7 +60,7 @@ componentDidMount() {
   if(api.auth.token) {
     api.auth.getCurrentUser()
     .then(d => this.setState({ auth: {currentUser: d}}))
-    // .then(() => this.props.history.push('/dashboard')) 
+    // .then(() => this.props.history.push('/dashboard'))
   } else if(this.state.auth.currentUser.id) {
     this.getCoords()
   }
@@ -68,6 +68,7 @@ componentDidMount() {
 
   render() {
     const loggedIn = !!this.state.auth.currentUser.id;
+<<<<<<< HEAD
     console.log('state', this.state)
     return (    
       <div>
@@ -101,25 +102,69 @@ componentDidMount() {
         <Route
           exact
           path="/dashboard"
+=======
+    console.log('state in app', this.state.auth)
+
+    return (
+      <Router>
+        <div>
+          <NavBar
+            currentUser={this.state.auth.currentUser}
+            handleLogout={this.handleLogout}
+          />
+          <Route exact path="/"
+>>>>>>> e5bdb1510eb00878efc22301a47665a9707daacf
           component={ props => {
-            return loggedIn ?
-            (
-              <DashboardContainer
-              {...props}
-              currentUser={this.state.auth.currentUser}
-              coords={this.state.coords}
-              lat={this.state.lat}
-              lng={this.state.lng}
-            />
-            ) : (
-            console.log('loggedIn returned false'),
-            alert('Whoops! You must be logged in to access the dashboard.'),
-            <Redirect to="/login"/>
-            )
+            return loggedIn ? <Redirect to="/dashboard"/> : <Home />
           }}
         />
-        <Route exact path="/map" component={MapContainer} />
-    </div>
+         />
+          <Route
+            exact
+            path="/login"
+            component={ props => {
+              return loggedIn ? <Redirect to="/dashboard"/> :
+              <Login
+                {...props}
+                handleLogin={this.handleLogin}
+                currentUser={this.state.auth.currentUser}
+              />
+            }}
+          />
+          <Route
+            exact
+            path="/signup"
+            component={ props =>
+              <Signup
+                {...props}
+                handleSignup={api.auth.signup}
+                currentUser={this.state.auth.currentUser}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/dashboard"
+            component={ props => {
+              return loggedIn ?
+              (
+                <DashboardContainer
+                {...props}
+                currentUser={this.state.auth.currentUser}
+                coords={this.state.coords}
+                lat={this.state.lat}
+                lng={this.state.lng}
+              />
+              ) : (
+              console.log('loggedIn returned false'),
+              alert('Whoops! You must be logged in to access the dashboard.'),
+              <Redirect to="/login"/>
+              )
+            }}
+          />
+          <Route exact path="/map" component={MapContainer} />
+      </div>
+    </Router>
     );
   }
 }
