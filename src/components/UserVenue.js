@@ -1,5 +1,7 @@
 import React from 'react';
 import {Button, Card, Row} from 'react-materialize'
+// import api from '../services/api';
+
 
 class UserVenue extends React.Component {
   state = {
@@ -10,6 +12,11 @@ class UserVenue extends React.Component {
     event.preventDefault();
     this.setState({visited: !this.state.visited})
   }
+
+  // handleVenueRemoval = () => {
+  //   api.userVenues.updateUserVenues(this.props.user, this.props.venue, this.state.visited)
+  // }
+
 
   render() {
 
@@ -32,15 +39,18 @@ class UserVenue extends React.Component {
             //     </div>
             //   </div>
             // }
-            actions={ !this.state.visited ? [<Button onClick={this.handleVisitedClick} >Mark As Visited</Button>] : [<Button onClick={this.handleVisitedClick} >Mark As Not Visited</Button>]}>
-          <p>
-            { this.state.visited ? <em>"You've been here before."</em> : <em>"You haven't been here yet."</em>}
-          </p>
+            actions={ (!this.state.visited ? [<Button onClick={this.handleVisitedClick} >Mark As Visited</Button>] : [<Button onClick={this.handleVisitedClick} >Mark As Not Visited</Button>])}>
+                    {/* // [<Button onClick={this.handleVenueRemoval} >Remove</Button>]}> */}
           <p>
             {venue.address}
             {", " + venue.city}
             {", " + venue.state} {venue.postalCode}
           </p>
+          <div>
+            <p>
+              { this.state.visited ? <em><strong>You've been here before.</strong></em> : <em><strong>You haven't been here yet.</strong></em>}
+            </p>
+          </div>
         </Card>
       </Row>
 

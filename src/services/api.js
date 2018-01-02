@@ -56,8 +56,9 @@ const login = (username, password) => {
     return fetch(`${API_ROOT}/user_venues`, {
       method: 'POST',
       headers: headers,
-      body: JSON.stringify({userId: user.id, venueId: venue.id})
-    }).then(res => res.json())
+      body: JSON.stringify({user_id: user.id, venue_id: venue.id})
+    // }).then(res => res.json())
+    })
   }
 
   const updateUserVenues = (userVenue, visited) => {
@@ -65,7 +66,8 @@ const login = (username, password) => {
       method: 'PATCH',
       headers: headers,
       body: JSON.stringify({visited: visited})
-    }).then(res => res.json())
+    // }).then(res => res.json())
+    })
   }
 
 

@@ -7,7 +7,7 @@ const UserVenueList = props => {
 
   console.log('user from UserVenuesList', props.user)
 
-  const allUserVenues = props.user.venues.map(userVenue => <UserVenue key={userVenue.id.toString()} userVenue={userVenue}/>)
+  const allUserVenues = props.user.venues.map(userVenue => <UserVenue key={"userVenue-" + userVenue.id.toString()} userVenue={userVenue} user={props.user}/>)
 
   return (
       <div className="page-item center">
