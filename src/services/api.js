@@ -77,6 +77,7 @@ const login = (username, password) => {
 
 export default {
     auth: {
+        token,
         login,
         getCurrentUser,
         signup
