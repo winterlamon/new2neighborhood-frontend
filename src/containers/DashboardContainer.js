@@ -18,7 +18,6 @@ class DashboardContainer extends React.Component {
     zip: '',
     radius: '1',
     section: 'food'
-    // userDetails: {}
   }
 
   getVenuesByLocation = () => {
@@ -29,9 +28,9 @@ class DashboardContainer extends React.Component {
       this.state.section
     )
     .then(d => {
-      let markers = d.map(venue => { return {lat: venue.lat, lng: venue.lng}})
+      let markers = d.venues.map(venue => { return {lat: venue.lat, lng: venue.lng}})
       this.setState({
-        venues: d,
+        venues: d.venues,
         markers: markers
         })
       })
@@ -77,6 +76,9 @@ class DashboardContainer extends React.Component {
   }
 
   render() {
+
+    console.log('currentUser in DashboardContainer', this.props.currentUser)
+
     return (
       <div>
         <Row>
@@ -94,6 +96,7 @@ class DashboardContainer extends React.Component {
               lng={this.state.lng}
               radius={this.state.radius}
               section={this.state.section}
+              currentUser={this.props.currentUser}
             />
           </Col>
         </div>
@@ -110,7 +113,6 @@ class DashboardContainer extends React.Component {
             <Row>
               <UserContainer
                 currentUser={this.props.currentUser}
-                // userDetails={this.state.userDetails}
               />
             </Row>
           </Col>

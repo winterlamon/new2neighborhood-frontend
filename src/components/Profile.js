@@ -8,9 +8,9 @@ class Profile extends React.Component {
 
   render() {
 
-    const user = api.userVenues.getUserVenues(this.props.currentUser)
-      console.log('user from Profile', user['first_Name'])
-      console.log('user venues from Profile', user['venues'])
+    console.log('currentUser from Profile', this.props.currentUser)
+    const user = this.props.currentUser
+    // const user = api.userVenues.getUserVenues(this.props.currentUser)
     // const allUserVenues = userVenues.map(userVenue => <UserVenue key={userVenue.id.toString()} userVenue={userVenue}/>)
     // console.log('User details on Profile', this.props.userDetails)
 
@@ -19,10 +19,10 @@ class Profile extends React.Component {
     return (
       <div className="page-item center">
         <div>
-          <h3>{user.firstName + " " + user.lastName}</h3>
+          <h3>{user.first_name + "'s " + "Venues"}</h3>
         </div>
         <div>
-          <UserVenuesList userDetails={user} />
+          <UserVenuesList user={user} />
         </div>
       </div>
     )
