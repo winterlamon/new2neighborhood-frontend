@@ -28,7 +28,7 @@ class DashboardContainer extends React.Component {
       this.state.section
     )
     .then(d => {
-      let markers = d.map(venue => { return {lat: venue.lat, lng: venue.lng}})
+      let markers = d.venues.map(venue => { return {lat: venue.lat, lng: venue.lng}})
       this.setState({
         venues: d,
         markers: markers
@@ -101,7 +101,7 @@ class DashboardContainer extends React.Component {
               />
             </Row>
             <Row>
-              <UserContainer />
+              <UserContainer currentUser={this.props.currentUser}/>
             </Row>
           </Col>
         </div>

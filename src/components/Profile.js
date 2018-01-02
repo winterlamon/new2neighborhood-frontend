@@ -6,6 +6,7 @@ class Profile extends React.Component {
   render() {
 
     const user = this.props.currentUser
+    console.log('currentUser in Profile', this.props.currentUser)
 
     return (
       <div className="page-item center">
