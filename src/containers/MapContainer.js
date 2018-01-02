@@ -3,7 +3,7 @@ import Map from '../components/Map'
 
 const MapContainer = props => {
     return(
-        <div>
+      <div className="page-item center">
             <Map markers={props.markers}
                 lat={props.lat}
                 lng={props.lng}

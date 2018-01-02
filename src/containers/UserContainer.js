@@ -5,7 +5,10 @@ const UserContainer = (props) => {
 
     return (
       <div>
-        <Profile currentUser={props.currentUser}/>
+        <Profile
+          currentUser={props.currentUser}
+          // userDetails={props.userDetails} 
+        />
       </div>
     )
 }

@@ -24,7 +24,7 @@ const searchVenuesByAddress = (address, city, state, zip, radius, selection) => 
             {method: 'POST',
             headers: headers,
             body: JSON.stringify({address: address, city: city, state: state, zip: zip, radius: radius, selection: selection})
-        }).then(res => res.json())     
+        }).then(res => res.json())
     )
 }
 
@@ -42,8 +42,8 @@ const login = (username, password) => {
         headers: headers,
         body: JSON.stringify({ firstName, lastName, username, password })
       })
-      .then(res => res.json())
-      .then(console.log)
+      // .then(res => res.json())
+      // .then(console.log)
     };
 
   const getCurrentUser = () => {
@@ -52,6 +52,28 @@ const login = (username, password) => {
     }).then(res => res.json());
   };
 
+  const createUserVenues = (user, venue) => {
+    return fetch(`${API_ROOT}/user_venues`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({userId: user.id, venueId: venue.id})
+    }).then(res => res.json())
+  }
+
+  const updateUserVenues = (userVenue, visited) => {
+    return fetch(`${API_ROOT}/user_venues/${userVenue.id}`, {
+      method: 'PATCH',
+      headers: headers,
+      body: JSON.stringify({visited: visited})
+    }).then(res => res.json())
+  }
+
+
+  const getUserVenues = (user) => {
+    return fetch(`${API_ROOT}/users/${user.id}`)
+      .then(res => res.json())
+      .then(console.log)
+  }
 
 export default {
     auth: {
@@ -62,5 +84,10 @@ export default {
     venues: {
         searchVenuesByAddress,
         searchVenuesByLocation
+    },
+    userVenues: {
+        createUserVenues,
+        updateUserVenues,
+        getUserVenues
     }
 }
