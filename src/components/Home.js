@@ -4,38 +4,20 @@ import {Button, Col, Row} from 'react-materialize';
 
 const Home = () => {
 
-  // // TESTING FETCHES TO API...REMOVE ME!!!
-  // const fetchUser = () => {
-  //   fetch('http://localhost:3001/auth', {
-  //     method: 'post',
-  //     headers: {'Content-Type': 'application/json', Accepts: 'application/json'},
-  //     body: JSON.stringify({'username': 'jordan@storms.com', 'password': '123'})
-  //   })
-  //   .then(res => res.json())
-  //   .then(console.log)
-  // }
-  // const lat = '40.7'
-  // const lon = '-74.0'
-  // const radius='5'
-  // const section='drinks'
-
-  // const testVenues = () => {
-  //   api.venues.searchVenues(lat, lon, radius, section)
-  // }
 
   return (
     <Row>
       <Col s={2}></Col>
     <Col s={8} className="page-item center">
         <h1>Welcome to the Neighborhood!</h1>
-        <p>
-          Did you recently move to a new neighborhood? Visiting a new city? <strong><em>New2Neighborhood</em></strong> is here to help!
-        </p>
-        <p>
-          When I started Reynholm Industries, I had just two things in my possession: a dream and 6 million pounds. He's had quite an evening. Someone stole his wheelchair. Did you see who it was? Red bearded man. You can come down here any time and I'll be waiting for you! [slams down phone] That told her! Dear Sir stroke Madam. Fire, exclamation mark. Fire, exclamation mark. Help me, exclamation mark. 123 Carrendon Road. Looking forward to hearing from you. All the best, Maurice Moss. 0115... no... 0118... no... 0118 999 ... 3. Hello? Is this the emergency services? Then which country am I speaking to? Hello? Hello? No, no, that's the music you heard when it come on.
-        </p>
-        {/* TEST BUTTON...REMOVE ME*/}
-        {/* <Button waves='light' node='a' onClick={fetchUser}>Test</Button> */}
+      <div className="page-item">
+          <p>
+            Did you recently move to a new neighborhood? Visiting a new city? <strong><em>New2Neighborhood</em></strong> is here to help!
+          </p>
+          <p>
+            <strong><em>New2Neighborhood</em></strong> allows you to search for bars and restaurants using either your current location or by setting an address. When you've found a venue that strikes your fancy, you can save it to a list of venues for you to explore at your leisure. Think of it as your food and drink to-do list! Once you have visited a venue, you can mark it off and pat yourself on the back for your successful gastro expedition. Cheers to you, young explorer!
+          </p>
+        </div>
         <div>
           <Row className="center">
             <Col s={2} ></Col>
