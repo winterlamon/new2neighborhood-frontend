@@ -9,7 +9,7 @@ import api from '../services/api';
 class DashboardContainer extends React.Component {
   state = {
     venues: [],
-    markers: [{lat: this.props.lat, lng: this.props.lng}],
+    markers: [],
     lat: this.props.lat,
     lng: this.props.lng,
     address: '',
@@ -47,9 +47,11 @@ class DashboardContainer extends React.Component {
       this.state.section
     )
     .then(d => {
-      let markers = d.map(venue => { return {lat: venue.lat, lng: venue.lng}})
+      let markers = d.venues.map(venue => { return {lat: venue.lat, lng: venue.lng}})
       this.setState({
-        venues: d,
+        venues: d.venues,
+        lat: d.coords[0],
+        lng: d.coords[1],
         markers: markers
         })
       })
