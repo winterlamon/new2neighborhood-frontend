@@ -21,7 +21,6 @@ class App extends Component {
   }
 
 handleLogin = user => {
-  console.log('user in APP handleLogin', user)
   const currentUser = {currentUser: user};
   localStorage.setItem('token', user.token);
   this.setState({auth: currentUser});
@@ -59,7 +58,8 @@ getCoords = () => {
 componentDidMount() {
   if(api.auth.token) {
     api.auth.getCurrentUser()
-    .then(d => this.setState({ auth: {currentUser: d}}))
+    .then(d => 
+      this.setState({ auth: {currentUser: d}}, this.getCoords))
     // .then(() => this.props.history.push('/dashboard'))
   } else if(this.state.auth.currentUser.id) {
     this.getCoords()
@@ -68,7 +68,6 @@ componentDidMount() {
 
   render() {
     const loggedIn = !!this.state.auth.currentUser.id;
-    console.log('state in app', this.state.auth)
 
     return (
       <Router>
@@ -81,7 +80,6 @@ componentDidMount() {
           component={ props => {
             return loggedIn ? <Redirect to="/dashboard"/> : <Home />
           }}
-        />
          />
           <Route
             exact
@@ -120,8 +118,6 @@ componentDidMount() {
                 lng={this.state.lng}
               />
               ) : (
-              console.log('loggedIn returned false'),
-              alert('Whoops! You must be logged in to access the dashboard.'),
               <Redirect to="/login"/>
               )
             }}

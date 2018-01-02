@@ -21,6 +21,7 @@ import {
       {props.markers.map((mark,index) => {
           return(
           <Marker 
+            {...mark}
             key={index} 
             position={{lat: mark.lat, lng: mark.lng}} 
             icon={{ url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'}}
