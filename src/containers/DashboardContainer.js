@@ -57,12 +57,6 @@ class DashboardContainer extends React.Component {
       })
     }
 
-  // getUserDetails = () => {
-  //   api.userVenues.getUserVenues(this.props.currentUser)
-  //     .then(userData => {
-  //     this.setState({userDetails: userData})
-  //     })
-  // }
 
   buttonHandler = event => {
     if(event.target.name === "Location") {
@@ -102,6 +96,7 @@ class DashboardContainer extends React.Component {
               section={this.state.section}
               searched={this.state.searched}
               currentUser={this.props.currentUser}
+              addVenueToUser={this.props.addVenueToUser}
             />
           </Col>
         </div>

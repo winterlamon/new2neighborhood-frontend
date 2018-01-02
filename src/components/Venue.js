@@ -3,22 +3,30 @@ import {Button, Card, Row} from 'react-materialize'
 import api from '../services/api'
 
 
-const Venue = (props) => {
+class Venue extends React.Component {
+
+  handleClick = () => {
+    api.userVenues.createUserVenues(this.props.currentUser, this.props.venue);
+    this.props.addVenueToUser(this.props.venue)
+  }
+
+  render() {
+
     return (
       <div>
         <Row>
           <Card
             className="card"
-            title={props.venue.name}
+            title={this.props.venue.name}
             actions={[<Button
-                          key={"venue-button-" + props.venue.id}
-                          onClick={() => api.userVenues.createUserVenues(props.currentUser, props.venue)}>
+                          key={"venue-button-" + this.props.venue.id}
+                          onClick={this.handleClick}>
                           Add to My Venues
                         </Button>
                     ]}>
-          <p>{props.venue.address}
-            {", " + props.venue.city}
-            {", " + props.venue.state} {props.venue.postalCode}
+          <p>{this.props.venue.address}
+            {", " + this.props.venue.city}
+            {", " + this.props.venue.state} {this.props.venue.postalCode}
           </p>
         </Card>
       </Row>
@@ -26,6 +34,7 @@ const Venue = (props) => {
       </div>
 
     )
+  }
 }
 
 export default Venue

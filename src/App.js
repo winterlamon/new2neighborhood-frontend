@@ -40,6 +40,11 @@ handleLogout = () => {
 //   this.setState({auth: currentUser})
 // }
 
+addVenueToUser = (venue) => {
+  const newVenues = this.state.auth.currentUser.venues.push(venue)
+  this.setState({[this.state.auth.currentUser.venues]: newVenues });
+}
+
 setCoords = (pos) => {
   let lat = pos.coords.latitude
   let lng = pos.coords.longitude
@@ -58,7 +63,7 @@ getCoords = () => {
 componentDidMount() {
   if(api.auth.token) {
     api.auth.getCurrentUser()
-    .then(d => 
+    .then(d =>
       this.setState({ auth: {currentUser: d}}, this.getCoords))
     // .then(() => this.props.history.push('/dashboard'))
   } else if(this.state.auth.currentUser.id) {
@@ -113,6 +118,7 @@ componentDidMount() {
                 <DashboardContainer
                 {...props}
                 currentUser={this.state.auth.currentUser}
+                addVenueToUser={this.addVenueToUser}
                 coords={this.state.coords}
                 lat={this.state.lat}
                 lng={this.state.lng}
