@@ -18,6 +18,7 @@ const VenueContainer = props => {
         radius={props.radius}
         section={props.section}
         currentUser={props.currentUser}
+        addVenueToUser={props.addVenueToUser}
       />
     </div>
   )

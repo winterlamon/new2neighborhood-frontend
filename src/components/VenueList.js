@@ -1,22 +1,26 @@
 import React from 'react';
 import {Col, Input, Row, Button} from 'react-materialize'
 import Venue from './Venue';
-// import {sampleVenues} from '../sampleData';
 
 
 const VenueList = props => {
-  const { venues, buttonHandler, handleChange, 
+  const { venues, buttonHandler, handleChange,
           address, city, state, zip, radius, section, searched} = props
 
-  const allVenues = venues.map(venue => <Venue key={"venue-" + venue.id.toString()} venue={venue} currentUser={props.currentUser} />)
+  const allVenues = venues.map(venue =>
+    <Venue
+      key={"venue-" + venue.id.toString()}
+      venue={venue}
+      currentUser={props.currentUser}
+      addVenueToUser={props.addVenueToUser}
+    />)
 
   return (
       <div className="page-item center">
         <h3>Venues</h3>
         <div>
-          {searched ? {allVenues} : 
           <div>
-            
+
           <Row>
             <Input onChange={handleChange} name="address" className="center" s={12} placeholder="123 Main Street" label="Street" value={address} />
             <Input onChange={handleChange} name="city" className="center" s={6} placeholder="New York" label="City" value={city}/>
@@ -50,7 +54,9 @@ const VenueList = props => {
             </Col>
           </Row>
           </div>
-          }
+        </div>
+        <div>
+          {allVenues}
         </div>
       </div>
     )

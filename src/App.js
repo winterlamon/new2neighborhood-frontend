@@ -41,6 +41,11 @@ handleLogout = () => {
 //   this.setState({auth: currentUser})
 // }
 
+addVenueToUser = (venue) => {
+  const newVenues = this.state.auth.currentUser.venues.push(venue)
+  this.setState({[this.state.auth.currentUser.venues]: newVenues });
+}
+
 setCoords = (pos) => {
   let lat = pos.coords.latitude
   let lng = pos.coords.longitude
@@ -68,7 +73,6 @@ componentDidMount() {
 
   render() {
     const loggedIn = !!this.state.auth.currentUser.id;
-    console.log('state in app', this.state.auth)
 
     return (
       <Router>
@@ -115,13 +119,13 @@ componentDidMount() {
                 <DashboardContainer
                 {...props}
                 currentUser={this.state.auth.currentUser}
+                addVenueToUser={this.addVenueToUser}
                 coords={this.state.coords}
                 lat={this.state.lat}
                 lng={this.state.lng}
               />
               ) : (
               console.log('loggedIn returned false'),
-              alert('Whoops! You must be logged in to access the dashboard.'),
               <Redirect to="/login"/>
               )
             }}
