@@ -68,41 +68,6 @@ componentDidMount() {
 
   render() {
     const loggedIn = !!this.state.auth.currentUser.id;
-<<<<<<< HEAD
-    console.log('state', this.state)
-    return (    
-      <div>
-        <NavBar
-          currentUser={this.state.auth.currentUser}
-          handleLogout={this.handleLogout}
-        />
-        <Route exact path="/" render={Home} />
-        <Route
-          exact
-          path="/login"
-          component={ props =>
-            <Login
-              {...props}
-              handleLogin={this.handleLogin}
-              currentUser={this.state.auth.currentUser}
-            />
-          }
-        />
-        <Route
-          exact
-          path="/signup"
-          component={ props =>
-            <Signup
-              {...props}
-              handleSignup={api.auth.signup}
-              currentUser={this.state.auth.currentUser}
-            />
-          }
-        />
-        <Route
-          exact
-          path="/dashboard"
-=======
     console.log('state in app', this.state.auth)
 
     return (
@@ -113,7 +78,6 @@ componentDidMount() {
             handleLogout={this.handleLogout}
           />
           <Route exact path="/"
->>>>>>> e5bdb1510eb00878efc22301a47665a9707daacf
           component={ props => {
             return loggedIn ? <Redirect to="/dashboard"/> : <Home />
           }}
