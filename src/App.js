@@ -68,8 +68,7 @@ componentDidMount() {
 
   render() {
     const loggedIn = !!this.state.auth.currentUser.id;
-    console.log('state in app', this.state.auth)
-    console.log(this.state)
+    console.log('state', this.state)
     return (    
       <div>
         <NavBar
