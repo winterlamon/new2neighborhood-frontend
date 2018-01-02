@@ -81,7 +81,6 @@ export default {
     auth: {
         token,
         login,
-        token,
         getCurrentUser,
         signup
     },

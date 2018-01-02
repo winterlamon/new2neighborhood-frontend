@@ -66,16 +66,6 @@ componentDidMount() {
   }
 }
 
-componentDidMount() {
-  if(api.auth.token) {
-    api.auth.getCurrentUser()
-    .then(d => this.setState({ auth: {currentUser: d}}))
-    // .then(() => this.props.history.push('/dashboard'))
-  } else if(this.state.auth.currentUser.id) {
-    this.getCoords()
-  }
-}
-
   render() {
     const loggedIn = !!this.state.auth.currentUser.id;
     console.log('state in app', this.state.auth)
@@ -87,22 +77,23 @@ componentDidMount() {
             currentUser={this.state.auth.currentUser}
             handleLogout={this.handleLogout}
           />
-          <Route exact path="/" render={Home}
+          <Route exact path="/"
           component={ props => {
-            return loggedIn ? <Home /> : <Redirect to="/login"/>
+            return loggedIn ? <Redirect to="/dashboard"/> : <Home />
           }}
         />
          />
           <Route
             exact
             path="/login"
-            component={ props =>
+            component={ props => {
+              return loggedIn ? <Redirect to="/dashboard"/> :
               <Login
                 {...props}
                 handleLogin={this.handleLogin}
                 currentUser={this.state.auth.currentUser}
               />
-            }
+            }}
           />
           <Route
             exact

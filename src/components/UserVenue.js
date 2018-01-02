@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Card, Row} from 'react-materialize'
-import api from '../services/api';
+// import api from '../services/api';
 
 
 class UserVenue extends React.Component {
