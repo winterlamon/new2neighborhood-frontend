@@ -1,7 +1,8 @@
 import React from 'react';
-import {Col, Row} from 'react-materialize'
-import VenueContainer from './VenueContainer'
+import {Col, Row} from 'react-materialize';
+import VenueContainer from './VenueContainer';
 import MapContainer from './MapContainer';
+import UserContainer from './UserContainer';
 import api from '../services/api';
 
 
@@ -12,7 +13,7 @@ class DashboardContainer extends React.Component {
     lat: this.props.lat,
     lng: this.props.lng,
     address: '',
-    city: '', 
+    city: '',
     state: '',
     zip: '',
     radius: '1',
@@ -21,9 +22,9 @@ class DashboardContainer extends React.Component {
 
   getVenuesByLocation = () => {
     api.venues.searchVenuesByLocation(
-      this.state.lat.toString(), 
-      this.state.lng.toString(), 
-      this.state.radius, 
+      this.state.lat.toString(),
+      this.state.lng.toString(),
+      this.state.radius,
       this.state.section
     )
     .then(d => {
@@ -41,7 +42,7 @@ class DashboardContainer extends React.Component {
       this.state.city,
       this.state.state,
       this.state.zip,
-      this.state.radius, 
+      this.state.radius,
       this.state.section
     )
     .then(d => {
@@ -54,7 +55,7 @@ class DashboardContainer extends React.Component {
         })
       })
     }
-  
+
 
   buttonHandler = event => {
     if(event.target.name === "Location") {
@@ -76,13 +77,13 @@ class DashboardContainer extends React.Component {
           <Col s={6}>
             <VenueContainer
               venues={this.state.venues}
-              buttonHandler={this.buttonHandler} 
+              buttonHandler={this.buttonHandler}
               handleChange={this.handleChange}
               address={this.state.address}
               city={this.state.city}
               state={this.state.state}
               zip={this.state.zip}
-              lat={this.state.lat} 
+              lat={this.state.lat}
               lng={this.state.lng}
               radius={this.state.radius}
               section={this.state.section}
@@ -91,12 +92,17 @@ class DashboardContainer extends React.Component {
         </div>
         <div>
           <Col s={6}>
-            <MapContainer 
-              venues={this.state.venues}
-              markers={this.state.markers}
-              lat={this.state.lat}
-              lng={this.state.lng}
-            />
+            <Row>
+              <MapContainer
+                venues={this.state.venues}
+                markers={this.state.markers}
+                lat={this.state.lat}
+                lng={this.state.lng}
+              />
+            </Row>
+            <Row>
+              <UserContainer />
+            </Row>
           </Col>
         </div>
       </Row>
