@@ -25,6 +25,7 @@ handleLogin = user => {
   const currentUser = {currentUser: user};
   localStorage.setItem('token', user.token);
   this.setState({auth: currentUser});
+  this.getCoords()
 }
 
 handleLogout = () => {
@@ -46,13 +47,23 @@ setCoords = (pos) => {
   this.setState({ lat: lat, lng: lng})
 }
 
-componentDidMount() {
+getCoords = () => {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(this.setCoords)
   } else {
     alert('This site requires Geolocation! Please reload and try again.')
   };
   // api.venues.searchVenues
+}
+
+componentDidMount() {
+  if(api.auth.token) {
+    api.auth.getCurrentUser()
+    .then(d => this.setState({ auth: {currentUser: d}}))
+    // .then(() => this.props.history.push('/dashboard'))
+  } else if(this.state.auth.currentUser.id) {
+    this.getCoords()
+  }
 }
 
   render() {
@@ -66,7 +77,12 @@ componentDidMount() {
             currentUser={this.state.auth.currentUser}
             handleLogout={this.handleLogout}
           />
-          <Route exact path="/" render={Home} />
+          <Route exact path="/" render={Home}
+          component={ props => {
+            return loggedIn ? <Home /> : <Redirect to="/login"/>
+          }}
+        />
+         />
           <Route
             exact
             path="/login"
