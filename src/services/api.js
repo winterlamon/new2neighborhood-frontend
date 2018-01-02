@@ -79,6 +79,7 @@ const login = (username, password) => {
 
 export default {
     auth: {
+        token,
         login,
         token,
         getCurrentUser,

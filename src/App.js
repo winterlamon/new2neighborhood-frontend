@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, withRouter } from 'react-router-dom';
 import './stylesheets/App.css';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
@@ -51,9 +51,19 @@ getCoords = () => {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(this.setCoords)
   } else {
-    alert('This site requires Geolocation! Please reload and try again.')
-  };
-  // api.venues.searchVenues
+  alert('This site requires Geolocation! Please reload and try again.')
+  }
+}
+
+
+componentDidMount() {
+  if(api.auth.token) {
+    api.auth.getCurrentUser()
+    .then(d => this.setState({ auth: {currentUser: d}}))
+    // .then(() => this.props.history.push('/dashboard'))
+  } else if(this.state.auth.currentUser.id) {
+    this.getCoords()
+  }
 }
 
 componentDidMount() {
@@ -132,4 +142,4 @@ componentDidMount() {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -6,6 +6,7 @@ import {
   } from "react-google-maps";
   
   const Map = withGoogleMap(props => {
+    
     return (
       <GoogleMap
         defaultZoom={15}
@@ -16,7 +17,7 @@ import {
         position={{lat: props.lat, lng: props.lng}}
         icon={{ url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' }}
       />
-      
+
       {props.markers.map((mark,index) => {
           return(
           <Marker 

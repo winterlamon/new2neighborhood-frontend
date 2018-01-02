@@ -5,7 +5,8 @@ import Venue from './Venue';
 
 
 const VenueList = props => {
-  const { venues, buttonHandler, handleChange, address, city, state, zip, radius, section} = props
+  const { venues, buttonHandler, handleChange, 
+          address, city, state, zip, radius, section, searched} = props
 
   const allVenues = venues.map(venue => <Venue key={"venue-" + venue.id.toString()} venue={venue} currentUser={props.currentUser} />)
 
@@ -13,6 +14,9 @@ const VenueList = props => {
       <div className="page-item center">
         <h3>Venues</h3>
         <div>
+          {searched ? {allVenues} : 
+          <div>
+            
           <Row>
             <Input onChange={handleChange} name="address" className="center" s={12} placeholder="123 Main Street" label="Street" value={address} />
             <Input onChange={handleChange} name="city" className="center" s={6} placeholder="New York" label="City" value={city}/>
@@ -45,8 +49,9 @@ const VenueList = props => {
               <Button onClick={buttonHandler} name="Adress">Address</Button>
             </Col>
           </Row>
+          </div>
+          }
         </div>
-        {allVenues}
       </div>
     )
 }
