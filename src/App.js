@@ -21,9 +21,10 @@ class App extends Component {
   }
 
 handleLogin = user => {
+  console.log('user in APP handleLogin', user)
   const currentUser = {currentUser: user};
   localStorage.setItem('token', user.token);
-  this.setState({auth: currentUser})
+  this.setState({auth: currentUser});
 }
 
 handleLogout = () => {
@@ -50,12 +51,13 @@ componentDidMount() {
     navigator.geolocation.getCurrentPosition(this.setCoords)
   } else {
     alert('This site requires Geolocation! Please reload and try again.')
-  }
+  };
   // api.venues.searchVenues
 }
 
   render() {
     const loggedIn = !!this.state.auth.currentUser.id;
+    console.log('state in app', this.state.auth)
 
     return (
       <Router>
