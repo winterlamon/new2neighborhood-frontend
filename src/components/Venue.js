@@ -5,7 +5,8 @@ import api from '../services/api'
 
 class Venue extends React.Component {
 
-  handleClick = () => {
+  handleClick = (event) => {
+    event.preventDefault();
     api.userVenues.createUserVenues(this.props.currentUser, this.props.venue);
     this.props.addVenueToUser(this.props.venue)
   }

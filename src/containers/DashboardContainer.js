@@ -109,8 +109,6 @@ class DashboardContainer extends React.Component {
                 lat={this.state.lat}
                 lng={this.state.lng}
               />
-            </Row>
-            <Row>
               <UserContainer
                 currentUser={this.props.currentUser}
               />
