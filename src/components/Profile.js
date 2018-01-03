@@ -12,10 +12,11 @@ class Profile extends React.Component {
 
     return (
       <div className="page-item center">
+        <h4>{"Hi, " + user.first_name + "!"}</h4>
         <Modal
           header={user.first_name + "'s Venues"}
           fixedFooter
-          trigger={<Button waves='light' node='a'>See Your Venues</Button>}>
+          trigger={<Button className="important-button" waves='light' node='a'>See Your Venues</Button>}>
           <div>
             <UserVenuesList user={user} />
           </div>

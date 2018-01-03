@@ -19,7 +19,7 @@ const VenueList = props => {
     <div>
       {searched ?
         <div className="page-item center">
-           <Button>Search Again!</Button>
+           <Button className="important-button">Search Again</Button>
 
             <div class='venues'>
               <Row>
