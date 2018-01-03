@@ -62,6 +62,9 @@ class DashboardContainer extends React.Component {
     if(event.target.name === "Location") {
       this.handleSearch()
       this.getVenuesByLocation()
+    }else if(event.target.name==="searchAgain"){
+      this.handleSearch()
+      this.props.getCoords()
     } else {
       this.handleSearch()
       this.getVenuesByAddress()
@@ -73,7 +76,6 @@ class DashboardContainer extends React.Component {
   }
 
   handleSearch = () => {
-    this.props.getCoords()
     this.setState({searched: !this.state.searched})
   }
 
@@ -87,7 +89,6 @@ class DashboardContainer extends React.Component {
               venues={this.state.venues}
               buttonHandler={this.buttonHandler}
               handleChange={this.handleChange}
-              handleSearch={this.handleSearch}
               address={this.state.address}
               city={this.state.city}
               state={this.state.state}
