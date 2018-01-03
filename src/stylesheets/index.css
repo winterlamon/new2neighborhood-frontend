@@ -41,3 +41,8 @@ h1, h2, h3, h4, h5, h6 {
   max-height: 41em;
   overflow-y: auto;
 }
+
+.preloader-wrapper {
+  top:45%;
+  margin: auto;
+  }

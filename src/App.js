@@ -117,6 +117,7 @@ componentDidMount() {
               (
                 <DashboardContainer
                 {...props}
+                venues={this.state.venues}
                 currentUser={this.state.auth.currentUser}
                 addVenueToUser={this.addVenueToUser}
                 coords={this.state.coords}

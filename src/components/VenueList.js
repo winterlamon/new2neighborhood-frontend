@@ -5,7 +5,7 @@ import Venue from './Venue';
 
 const VenueList = props => {
   const { venues, buttonHandler, handleChange,
-          address, city, state, zip, radius, section, searched} = props
+          address, city, state, zip, radius, section, searched, lat} = props
 
   const allVenues = venues.map(venue =>
     <Venue
@@ -55,13 +55,20 @@ const VenueList = props => {
                 </Col>
               </Row>
               <Row>
-                <p>Search by current location or by an address</p>
-                <Col offset="s3">
-                  <Button onClick={buttonHandler} name="Location">Location</Button>
-                </Col>
-                <Col>
-                  <Button onClick={buttonHandler} name="Address">Address</Button>
-                </Col>
+                {lat !== '' ?
+                  <div>
+                    <p>Search by current location or by an address</p>
+                    <Col offset="s3">
+                      <Button onClick={buttonHandler} name="Location">Location</Button>
+                    </Col>
+                    <Col>
+                      <Button onClick={buttonHandler} name="Address">Address</Button>
+                    </Col>
+                  </div>
+                  :
+                  null
+                }
+
               </Row>
             </div>
         </div>

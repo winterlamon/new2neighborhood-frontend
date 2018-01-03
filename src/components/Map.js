@@ -29,7 +29,8 @@ import {
           )
       })}
       </GoogleMap>
-  )
+     
+    )
   })
   
 export default Map;
