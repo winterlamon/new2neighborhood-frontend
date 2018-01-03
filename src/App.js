@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, withRouter } from 'react-router-dom';
 import './stylesheets/App.css';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
@@ -23,7 +23,8 @@ class App extends Component {
 handleLogin = user => {
   const currentUser = {currentUser: user};
   localStorage.setItem('token', user.token);
-  this.setState({auth: currentUser})
+  this.setState({auth: currentUser});
+  this.getCoords()
 }
 
 handleLogout = () => {
@@ -39,19 +40,35 @@ handleLogout = () => {
 //   this.setState({auth: currentUser})
 // }
 
+addVenueToUser = (venue) => {
+  const newVenues = this.state.auth.currentUser.venues.push(venue)
+  this.setState({[this.state.auth.currentUser.venues]: newVenues });
+}
+
 setCoords = (pos) => {
   let lat = pos.coords.latitude
   let lng = pos.coords.longitude
   this.setState({ lat: lat, lng: lng})
 }
 
-componentDidMount() {
+getCoords = () => {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(this.setCoords)
   } else {
-    alert('This site requires Geolocation! Please reload and try again.')
+  alert('This site requires Geolocation! Please reload and try again.')
   }
-  // api.venues.searchVenues
+}
+
+
+componentDidMount() {
+  if(api.auth.token) {
+    api.auth.getCurrentUser()
+    .then(d =>
+      this.setState({ auth: {currentUser: d}}, this.getCoords))
+    // .then(() => this.props.history.push('/dashboard'))
+  } else if(this.state.auth.currentUser.id) {
+    this.getCoords()
+  }
 }
 
   render() {
@@ -64,17 +81,22 @@ componentDidMount() {
             currentUser={this.state.auth.currentUser}
             handleLogout={this.handleLogout}
           />
-          <Route exact path="/" render={Home} />
+          <Route exact path="/"
+          component={ props => {
+            return loggedIn ? <Redirect to="/dashboard"/> : <Home />
+          }}
+         />
           <Route
             exact
             path="/login"
-            component={ props =>
+            component={ props => {
+              return loggedIn ? <Redirect to="/dashboard"/> :
               <Login
                 {...props}
                 handleLogin={this.handleLogin}
                 currentUser={this.state.auth.currentUser}
               />
-            }
+            }}
           />
           <Route
             exact
@@ -95,14 +117,15 @@ componentDidMount() {
               (
                 <DashboardContainer
                 {...props}
+                venues={this.state.venues}
                 currentUser={this.state.auth.currentUser}
+                addVenueToUser={this.addVenueToUser}
                 coords={this.state.coords}
                 lat={this.state.lat}
                 lng={this.state.lng}
+                getCoords={this.getCoords}
               />
               ) : (
-              console.log('loggedIn returned false'),
-              alert('Whoops! You must be logged in to access the dashboard.'),
               <Redirect to="/login"/>
               )
             }}
@@ -114,4 +137,4 @@ componentDidMount() {
   }
 }
 
-export default App;
+export default withRouter(App);

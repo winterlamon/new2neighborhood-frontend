@@ -1,28 +1,33 @@
 import React from 'react';
 import {Button, Card, Row} from 'react-materialize'
+import api from '../services/api'
 
-const Venue = (props) => {
+
+class Venue extends React.Component {
+
+  handleClick = (event) => {
+    event.preventDefault();
+    api.userVenues.createUserVenues(this.props.currentUser, this.props.venue);
+    this.props.addVenueToUser(this.props.venue)
+  }
+
+  render() {
+
     return (
       <div>
         <Row>
           <Card
             className="card"
-            // header={<CardTitle reveal waves='light'/>}
-            title={props.venue.name}
-            // reveal={
-            //   <div>
-            //     <div>
-            //       {props.venue.description ? <p>{props.venue.description}</p> : <div></div>}
-            //     </div>
-            //     <div>
-            //       {props.venue.url ? <p><a href={props.venue.url} target="_blank">Visit Website</a></p> : <div></div>}
-            //     </div>
-            //   </div>
-            // }
-            actions={[<Button>Add to List</Button>]}>
-          <p>{props.venue.address}
-            {", " + props.venue.city}
-            {", " + props.venue.state} {props.venue.postalCode}
+            title={this.props.venue.name}
+            actions={[<Button
+                          key={"venue-button-" + this.props.venue.id}
+                          onClick={this.handleClick}>
+                          Add to My Venues
+                        </Button>
+                    ]}>
+          <p>{this.props.venue.address}
+            {", " + this.props.venue.city}
+            {", " + this.props.venue.state} {this.props.venue.postalCode}
           </p>
         </Card>
       </Row>
@@ -30,6 +35,7 @@ const Venue = (props) => {
       </div>
 
     )
+  }
 }
 
 export default Venue

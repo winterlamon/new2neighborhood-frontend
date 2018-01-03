@@ -8,7 +8,7 @@ import api from '../services/api';
 
 class DashboardContainer extends React.Component {
   state = {
-    venues: [],
+    venues: this.props.venues,
     markers: [],
     lat: this.props.lat,
     lng: this.props.lng,
@@ -17,7 +17,8 @@ class DashboardContainer extends React.Component {
     state: '',
     zip: '',
     radius: '1',
-    section: 'food'
+    section: 'food',
+    searched: false
   }
 
   getVenuesByLocation = () => {
@@ -30,7 +31,7 @@ class DashboardContainer extends React.Component {
     .then(d => {
       let markers = d.venues.map(venue => { return {lat: venue.lat, lng: venue.lng}})
       this.setState({
-        venues: d,
+        venues: d.venues,
         markers: markers
         })
       })
@@ -59,14 +60,23 @@ class DashboardContainer extends React.Component {
 
   buttonHandler = event => {
     if(event.target.name === "Location") {
+      this.handleSearch()
       this.getVenuesByLocation()
+    }else if(event.target.name==="searchAgain"){
+      this.handleSearch()
+      this.props.getCoords()
     } else {
+      this.handleSearch()
       this.getVenuesByAddress()
     }
   }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value })
+  }
+
+  handleSearch = () => {
+    this.setState({searched: !this.state.searched})
   }
 
   render() {
@@ -87,6 +97,9 @@ class DashboardContainer extends React.Component {
               lng={this.state.lng}
               radius={this.state.radius}
               section={this.state.section}
+              searched={this.state.searched}
+              currentUser={this.props.currentUser}
+              addVenueToUser={this.props.addVenueToUser}
             />
           </Col>
         </div>
@@ -99,9 +112,9 @@ class DashboardContainer extends React.Component {
                 lat={this.state.lat}
                 lng={this.state.lng}
               />
-            </Row>
-            <Row>
-              <UserContainer currentUser={this.props.currentUser}/>
+              <UserContainer
+                currentUser={this.props.currentUser}
+              />
             </Row>
           </Col>
         </div>
