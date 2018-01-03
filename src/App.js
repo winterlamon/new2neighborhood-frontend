@@ -123,6 +123,7 @@ componentDidMount() {
                 coords={this.state.coords}
                 lat={this.state.lat}
                 lng={this.state.lng}
+                getCoords={this.getCoords}
               />
               ) : (
               <Redirect to="/login"/>
