@@ -1,17 +1,12 @@
-import React from 'react';
-import Profile from '../components/Profile';
+import React from "react";
+import Profile from "../components/Profile";
 
-const UserContainer = (props) => {
+const UserContainer = props => {
+  return (
+    <div>
+      <Profile currentUser={props.currentUser} />
+    </div>
+  );
+};
 
-  console.log('currentUser in UserContainer', props.currentUser)
-
-    return (
-      <div>
-        <Profile
-          currentUser={props.currentUser}
-        />
-      </div>
-    )
-}
-
-export default UserContainer
+export default UserContainer;
