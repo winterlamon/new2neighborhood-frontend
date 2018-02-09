@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
-import { Button, Col, Input, Modal, Row } from "react-materialize";
+import { Button, Col, Modal, Row } from "react-materialize";
 import api from "../services/api";
 
 class Login extends React.Component {
@@ -43,27 +43,35 @@ class Login extends React.Component {
           <Col s={6} className="page-item center">
             <h3>Welcome Back!</h3>
             <Row>
-              <Input
-                s={12}
-                name="username"
-                className="center"
-                type="email"
-                label="Email"
-                value={fields.username}
-                onChange={this.handleChange}
-              />
-              <Input
-                s={12}
-                name="password"
-                className="center"
-                type="password"
-                label="Password"
-                value={fields.password}
-                onChange={this.handleChange}
-              />
-              <Button onClick={this.handleSubmit} waves="light" node="a">
-                Log In
-              </Button>
+              <form>
+                <label>
+                  Email
+                  <input
+                    s={12}
+                    name="username"
+                    className="center"
+                    type="email"
+                    label="Email"
+                    value={fields.username}
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <label>
+                  Password
+                  <input
+                    s={12}
+                    name="password"
+                    className="center"
+                    type="password"
+                    label="Password"
+                    value={fields.password}
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <Button onClick={this.handleSubmit} waves="light" node="a">
+                  Log In
+                </Button>
+              </form>
             </Row>
             <Row>
               <Modal

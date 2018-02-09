@@ -84,8 +84,8 @@ class App extends Component {
       <Router>
         <div>
           <NavBar
-            currentUser={this.state.auth.currentUser}
-            handleLogout={this.handleLogout}
+          // currentUser={this.state.auth.currentUser}
+          // handleLogout={this.handleLogout}
           />
           <Route
             exact
@@ -103,8 +103,8 @@ class App extends Component {
               ) : (
                 <Login
                   {...props}
-                  handleLogin={this.handleLogin}
-                  currentUser={this.state.auth.currentUser}
+                  // handleLogin={this.handleLogin}
+                  // currentUser={this.state.auth.currentUser}
                 />
               );
             }}
@@ -115,8 +115,8 @@ class App extends Component {
             component={props => (
               <Signup
                 {...props}
-                handleSignup={api.auth.signup}
-                currentUser={this.state.auth.currentUser}
+                // handleSignup={api.auth.signup}
+                // currentUser={this.state.auth.currentUser}
               />
             )}
           />
@@ -127,13 +127,13 @@ class App extends Component {
               return loggedIn ? (
                 <DashboardContainer
                   {...props}
-                  venues={this.state.venues}
-                  currentUser={this.state.auth.currentUser}
-                  addVenueToUser={this.addVenueToUser}
-                  coords={this.state.coords}
-                  lat={this.state.lat}
-                  lng={this.state.lng}
-                  getCoords={this.getCoords}
+                  venues={this.props.venues}
+                  // currentUser={this.state.auth.currentUser}
+                  // addVenueToUser={this.addVenueToUser}
+                  // coords={this.state.coords}
+                  // lat={this.state.lat}
+                  // lng={this.state.lng}
+                  // getCoords={this.getCoords}
                 />
               ) : (
                 <Redirect to="/login" />

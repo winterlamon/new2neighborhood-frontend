@@ -20,7 +20,6 @@ const VenueContainer = props => {
         radius={props.radius}
         section={props.section}
         searched={props.searched}
-        currentUser={props.currentUser}
         addVenueToUser={props.addVenueToUser}
       />
     </div>

@@ -26,8 +26,8 @@ class DashboardContainer extends React.Component {
   getVenuesByLocation = () => {
     api.venues
       .searchVenuesByLocation(
-        this.state.lat.toString(),
-        this.state.lng.toString(),
+        this.currentUser.lat.toString(),
+        this.currentUser.lng.toString(),
         this.state.radius,
         this.state.section
       )
@@ -93,20 +93,20 @@ class DashboardContainer extends React.Component {
           <div>
             <Col s={6}>
               <VenueContainer
-                venues={this.state.venues}
-                buttonHandler={this.buttonHandler}
-                handleChange={this.handleChange}
-                address={this.state.address}
-                city={this.state.city}
-                state={this.state.state}
-                zip={this.state.zip}
-                lat={this.state.lat}
-                lng={this.state.lng}
-                radius={this.state.radius}
-                section={this.state.section}
-                searched={this.state.searched}
-                currentUser={this.props.currentUser}
-                addVenueToUser={this.props.addVenueToUser}
+              // venues={this.state.venues}
+              // buttonHandler={this.buttonHandler}
+              // handleChange={this.handleChange}
+              // address={this.state.address}
+              // city={this.state.city}
+              // state={this.state.state}
+              // zip={this.state.zip}
+              // lat={this.state.lat}
+              // lng={this.state.lng}
+              // radius={this.state.radius}
+              // section={this.state.section}
+              // searched={this.state.searched}
+              // currentUser={this.props.currentUser}
+              // addVenueToUser={this.props.addVenueToUser}
               />
             </Col>
           </div>
@@ -115,11 +115,13 @@ class DashboardContainer extends React.Component {
               <Row>
                 <MapContainer
                   venues={this.state.venues}
-                  markers={this.state.markers}
-                  lat={this.state.lat}
-                  lng={this.state.lng}
+                  // markers={this.state.markers}
+                  // lat={this.state.lat}
+                  // lng={this.state.lng}
                 />
-                <UserContainer currentUser={this.props.currentUser} />
+                <UserContainer
+                // currentUser={this.props.currentUser}
+                />
               </Row>
             </Col>
           </div>

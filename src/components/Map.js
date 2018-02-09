@@ -12,7 +12,7 @@ const Map = withGoogleMap(props => {
         icon={{ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }}
       />
 
-      {props.markers.map((mark, index) => {
+      {/* {props.markers.map((mark, index) => {
         return (
           <Marker
             {...mark}
@@ -23,7 +23,7 @@ const Map = withGoogleMap(props => {
             }}
           />
         );
-      })}
+      })} */}
     </GoogleMap>
   );
 });

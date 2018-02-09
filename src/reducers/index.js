@@ -55,19 +55,22 @@ export function authReducer(
       last_name: null,
       username: null,
       venues: [],
-      token: null
+      token: null,
+      lat: null,
+      lng: null
     },
     currentLocation: {
       address: null,
       city: null,
       state: null,
       zip: null,
-      lat: "",
-      lng: "",
+      lat: null,
+      lng: null,
       radius: null,
       section: "food",
       searched: null
-    }
+    },
+    venues: []
   },
   action
 ) {
@@ -75,7 +78,15 @@ export function authReducer(
     case "SET_CURRENT_USER":
       return {
         ...state,
-        currentUser: action.user,
+        currentUser: {
+          ...state.currentUser,
+          id: action.user.id,
+          first_name: action.user.first_name,
+          last_name: action.user.last_name,
+          username: action.user.username,
+          venues: action.user.venues,
+          token: action.user.token
+        },
         currentLocation: { ...state.currentLocation }
       };
     case "CREATE_USER":
@@ -89,27 +100,30 @@ export function authReducer(
           last_name: null,
           username: null,
           venues: [],
-          token: null
+          token: null,
+          lat: null,
+          lng: null
         },
         currentLocation: {
           address: null,
           city: null,
           state: null,
           zip: null,
-          lat: "",
-          lng: "",
+          lat: null,
+          lng: null,
           radius: null,
           section: "food",
           searched: null
-        }
+        },
+        venues: []
       };
     case "SET_CURRENT_LOCATION":
       return {
         ...state,
-        currentLocation: {
-          ...state.currentLocation,
-          lat: action.pos.coords.latitude,
-          lng: action.pos.coords.longitude
+        currentUser: {
+          ...state.currentUser,
+          lat: parseFloat(action.pos.coords.latitude),
+          lng: parseFloat(action.pos.coords.longitude)
         }
       };
     default:
