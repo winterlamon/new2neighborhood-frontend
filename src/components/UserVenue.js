@@ -1,26 +1,25 @@
-import React from 'react';
-import {Button, Card, Row} from 'react-materialize'
-// import api from '../services/api';
-
+import React from "react";
+import { Button, Card, Row } from "react-materialize";
+import api from "../services/api";
 
 class UserVenue extends React.Component {
   state = {
+    userVenue: this.props.userVenue,
+    user: this.props.user,
     visited: false
-  }
+  };
 
-  handleVisitedClick = (event) => {
+  handleVisitedClick = event => {
     event.preventDefault();
-    this.setState({visited: !this.state.visited})
-  }
+    api.userVenues.deleteUserVenues(this.state.user, this.state.userVenue);
+  };
 
   // handleVenueRemoval = () => {
   //   api.userVenues.updateUserVenues(this.props.user, this.props.venue, this.state.visited)
   // }
 
-
   render() {
-
-    const venue = this.props.userVenue
+    const venue = this.props.userVenue;
 
     return (
       <div>
@@ -39,25 +38,44 @@ class UserVenue extends React.Component {
             //     </div>
             //   </div>
             // }
-            actions={ (!this.state.visited ? [<Button onClick={this.handleVisitedClick} >Mark As Visited</Button>] : [<Button onClick={this.handleVisitedClick} >Mark As Not Visited</Button>])}>
-                    {/* // [<Button onClick={this.handleVenueRemoval} >Remove</Button>]}> */}
-          <p>
-            {venue.address}
-            {", " + venue.city}
-            {", " + venue.state} {venue.postalCode}
-          </p>
-          <div>
+            actions={
+              !this.state.visited
+                ? [
+                    <Button onClick={this.handleVisitedClick}>
+                      Mark As Visited
+                    </Button>
+                  ]
+                : [
+                    <Button onClick={this.handleVisitedClick}>
+                      Mark As Not Visited
+                    </Button>
+                  ]
+            }
+          >
+            {/* // [<Button onClick={this.handleVenueRemoval} >Remove</Button>]}> */}
             <p>
-              { this.state.visited ? <em><strong>You've been here before.</strong></em> : <em><strong>You haven't been here yet.</strong></em>}
+              {venue.address}
+              {", " + venue.city}
+              {", " + venue.state} {venue.postalCode}
             </p>
-          </div>
-        </Card>
-      </Row>
-
+            <div>
+              <p>
+                {this.state.visited ? (
+                  <em>
+                    <strong>You've been here before.</strong>
+                  </em>
+                ) : (
+                  <em>
+                    <strong>You haven't been here yet.</strong>
+                  </em>
+                )}
+              </p>
+            </div>
+          </Card>
+        </Row>
       </div>
-
-    )
+    );
   }
 }
 
-export default UserVenue
+export default UserVenue;
