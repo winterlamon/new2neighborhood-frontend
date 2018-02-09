@@ -73,9 +73,45 @@ export function authReducer(
 ) {
   switch (action.type) {
     case "SET_CURRENT_USER":
+      return {
+        ...state,
+        currentUser: action.user,
+        currentLocation: { ...state.currentLocation }
+      };
+    case "CREATE_USER":
       return { ...state, currentUser: action.user };
+    case "LOG_OUT_USER":
+      return {
+        ...state,
+        currentUser: {
+          id: null,
+          first_name: null,
+          last_name: null,
+          username: null,
+          venues: [],
+          token: null
+        },
+        currentLocation: {
+          address: null,
+          city: null,
+          state: null,
+          zip: null,
+          lat: "",
+          lng: "",
+          radius: null,
+          section: "food",
+          searched: null
+        }
+      };
     case "SET_CURRENT_LOCATION":
-      return { ...state, currentLocation: action };
+      return {
+        ...state,
+        currentLocation: {
+          ...state.currentLocation,
+          lat: action.pos.coords.latitude,
+          lng: action.pos.coords.longitude
+        }
+      };
     default:
       return state;
   }
