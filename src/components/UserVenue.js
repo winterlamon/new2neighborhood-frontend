@@ -1,5 +1,8 @@
 import React from "react";
 import { Button, Card, Row } from "react-materialize";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as actions from "../actions";
 import api from "../services/api";
 
 class UserVenue extends React.Component {
@@ -78,4 +81,11 @@ class UserVenue extends React.Component {
   }
 }
 
-export default UserVenue;
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer
+    }),
+    actions
+  )(UserVenue)
+);

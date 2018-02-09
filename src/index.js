@@ -4,6 +4,7 @@ import "./stylesheets/index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import { authReducer } from "./reducers";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 // import registerServiceWorker from './registerServiceWorker';
@@ -14,6 +15,12 @@ injectTapEventPlugin();
 const rootReducer = combineReducers({
   authReducer
 });
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 const Root = () => {
   return (
@@ -26,5 +33,4 @@ const Root = () => {
 };
 
 ReactDOM.render(<Root />, document.getElementById("root"));
-registerServiceWorker();
 // registerServiceWorker();

@@ -1,6 +1,8 @@
 import React from "react";
 import { Navbar, NavItem } from "react-materialize";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class NavBar extends React.Component {
   handleClick = event => {
@@ -37,4 +39,11 @@ class NavBar extends React.Component {
   }
 }
 
-export default withRouter(NavBar);
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer
+    }),
+    actions
+  )(NavBar)
+);

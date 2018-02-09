@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as actions from "../actions";
 import UserVenue from "./UserVenue";
 
 const UserVenueList = props => {
@@ -13,4 +16,11 @@ const UserVenueList = props => {
   return <div className="page-item center">{allUserVenues}</div>;
 };
 
-export default UserVenueList;
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer
+    }),
+    actions
+  )(UserVenueList)
+);

@@ -1,8 +1,10 @@
-import React from 'react';
-import VenueList from '../components/VenueList';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as actions from "../actions";
+import VenueList from "../components/VenueList";
 
 const VenueContainer = props => {
-
   return (
     <div>
       <VenueList
@@ -22,7 +24,14 @@ const VenueContainer = props => {
         addVenueToUser={props.addVenueToUser}
       />
     </div>
-  )
-}
+  );
+};
 
-export default VenueContainer
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer
+    }),
+    actions
+  )(VenueContainer)
+);

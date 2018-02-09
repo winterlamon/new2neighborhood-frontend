@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as actions from "../actions";
 import { Col, Input, Row, Button } from "react-materialize";
 import Venue from "./Venue";
 
@@ -139,4 +142,11 @@ const VenueList = props => {
   );
 };
 
-export default VenueList;
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer
+    }),
+    actions
+  )(VenueList)
+);

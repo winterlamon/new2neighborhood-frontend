@@ -1,6 +1,9 @@
 import React from "react";
 import { Button, Modal } from "react-materialize";
 import UserVenuesList from "./UserVenuesList";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as actions from "../actions";
 
 class Profile extends React.Component {
   render() {
@@ -27,4 +30,11 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer
+    }),
+    actions
+  )(Profile)
+);
