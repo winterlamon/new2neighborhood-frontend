@@ -24,16 +24,13 @@ class Login extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api.auth
-      .login(this.state.fields.username, this.state.fields.password)
-      .then(res => {
-        if (res.error) {
-          this.setState({ error: true }, alert(res.error));
-        } else {
-          this.props.handleLogin(res);
-          this.props.history.push("/dashboard");
-        }
-      });
+    this.props.login(this.state.fields).then(res => {
+      if (res.error) {
+        this.setState({ error: true }, alert(res.error));
+      } else {
+        this.props.history.push("/dashboard");
+      }
+    });
   };
 
   render() {

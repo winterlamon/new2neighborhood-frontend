@@ -1,4 +1,4 @@
-import api from "../services/api";
+// import api from "../services/api";
 
 const API_ROOT = `http://localhost:3001`;
 
@@ -10,8 +10,10 @@ const headers = {
   Authorization: token
 };
 
-export function login(username, password) {
+export function login({ username, password }) {
   return dispatch => {
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${API_ROOT}/auth`, {
       method: "POST",
       headers: headers,
@@ -28,6 +30,8 @@ export function login(username, password) {
 
 export function signup(firstName, lastName, username, password) {
   return dispatch => {
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${API_ROOT}/users`, {
       method: "POST",
       headers: headers,
@@ -45,13 +49,15 @@ export function signup(firstName, lastName, username, password) {
 
 export function getCurrentUser() {
   return dispatch => {
+    dispatch({ type: "ASYNC_START" });
+
     return fetch(`${API_ROOT}/current_user`, {
       headers: headers
     })
       .then(res => res.json())
-      .then(user => {
-        dispatch({ type: "SET_CURRENT_USER", user });
-      });
+      .then(console.log);
+    // dispatch({ type: "SET_CURRENT_USER", user });
+    // });
   };
 }
 
@@ -100,14 +106,14 @@ export function addVenueToUser(venue) {
 
 export function setCoords(pos) {
   return dispatch => {
-    dispatch({ type: "SET_CURRENT_LOCATION", pos });
-  };
-}
+    dispatch({ type: "ASYNC_START" });
 
-export function getCoords(coords) {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(coords);
-  } else {
-    alert("This site requires Geolocation! Please reload and try again.");
-  }
+    if (navigator.geolocation) {
+      return navigator.geolocation.getCurrentPosition(pos =>
+        dispatch({ type: "SET_CURRENT_LOCATION", pos })
+      );
+    } else {
+      alert("This site requires Geolocation! Please reload and try again.");
+    }
+  };
 }

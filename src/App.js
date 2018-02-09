@@ -69,7 +69,7 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
       this.props.getCurrentUser();
-      this.props.getCoords(this.props.setCoords);
+      this.props.setCoords();
       // .then(() => this.props.history.push('/dashboard'))
       // } else if (this.state.auth.currentUser.id) {
       //   this.getCoords();
