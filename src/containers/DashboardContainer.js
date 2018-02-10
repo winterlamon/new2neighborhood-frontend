@@ -6,7 +6,6 @@ import { Col, Row } from "react-materialize";
 import VenueContainer from "./VenueContainer";
 import MapContainer from "./MapContainer";
 import UserContainer from "./UserContainer";
-import api from "../services/api";
 
 class DashboardContainer extends React.Component {
   state = {
@@ -23,47 +22,47 @@ class DashboardContainer extends React.Component {
     searched: false
   };
 
-  getVenuesByLocation = () => {
-    api.venues
-      .searchVenuesByLocation(
-        this.currentUser.lat.toString(),
-        this.currentUser.lng.toString(),
-        this.state.radius,
-        this.state.section
-      )
-      .then(d => {
-        let markers = d.venues.map(venue => {
-          return { lat: venue.lat, lng: venue.lng };
-        });
-        this.setState({
-          venues: d.venues,
-          markers: markers
-        });
-      });
-  };
-
-  getVenuesByAddress = () => {
-    api.venues
-      .searchVenuesByAddress(
-        this.state.address,
-        this.state.city,
-        this.state.state,
-        this.state.zip,
-        this.state.radius,
-        this.state.section
-      )
-      .then(d => {
-        let markers = d.venues.map(venue => {
-          return { lat: venue.lat, lng: venue.lng };
-        });
-        this.setState({
-          venues: d.venues,
-          lat: d.coords[0],
-          lng: d.coords[1],
-          markers: markers
-        });
-      });
-  };
+  // getVenuesByLocation = () => {
+  //   api.venues
+  //     .searchVenuesByLocation(
+  //       this.currentUser.lat.toString(),
+  //       this.currentUser.lng.toString(),
+  //       this.state.radius,
+  //       this.state.section
+  //     )
+  //     .then(d => {
+  //       let markers = d.venues.map(venue => {
+  //         return { lat: venue.lat, lng: venue.lng };
+  //       });
+  //       this.setState({
+  //         venues: d.venues,
+  //         markers: markers
+  //       });
+  //     });
+  // };
+  //
+  // getVenuesByAddress = () => {
+  //   api.venues
+  //     .searchVenuesByAddress(
+  //       this.state.address,
+  //       this.state.city,
+  //       this.state.state,
+  //       this.state.zip,
+  //       this.state.radius,
+  //       this.state.section
+  //     )
+  //     .then(d => {
+  //       let markers = d.venues.map(venue => {
+  //         return { lat: venue.lat, lng: venue.lng };
+  //       });
+  //       this.setState({
+  //         venues: d.venues,
+  //         lat: d.coords[0],
+  //         lng: d.coords[1],
+  //         markers: markers
+  //       });
+  //     });
+  // };
 
   buttonHandler = event => {
     if (event.target.name === "Location") {

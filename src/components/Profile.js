@@ -22,7 +22,7 @@ class Profile extends React.Component {
           }
         >
           <div>
-            <UserVenuesList user={user} />
+            <UserVenuesList />
           </div>
         </Modal>
       </div>

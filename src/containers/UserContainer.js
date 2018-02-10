@@ -7,7 +7,7 @@ import Profile from "../components/Profile";
 const UserContainer = props => {
   return (
     <div>
-      <Profile currentUser={props.currentUser} />
+      <Profile />
     </div>
   );
 };

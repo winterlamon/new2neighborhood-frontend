@@ -14,7 +14,6 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import DashboardContainer from "./containers/DashboardContainer";
 import MapContainer from "./containers/MapContainer";
-import api from "./services/api";
 
 class App extends Component {
   state = {

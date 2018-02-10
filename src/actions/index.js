@@ -74,28 +74,25 @@ export function searchVenuesByLocation(lat, lon, radius, selection) {
       method: "POST",
       headers: headers,
       body: JSON.stringify({
-        lat: lat,
-        lon: lon,
+        lat: lat.toString(),
+        lon: lon.toString(),
         radius: radius,
         selection: selection
       })
     })
       .then(res => res.json())
-      .then(console.log);
+      .then(console.log)
+      .then(d => {
+        let markers = d.venues.map(venue => {
+          return { lat: venue.lat, lng: venue.lng };
+        });
+        this.setState({
+          venues: d.venues,
+          markers: markers
+        });
+      });
   };
 }
-
-// handleLogin = user => {
-//   const currentUser = { currentUser: user };
-//   localStorage.setItem("token", user.token);
-//   this.setState({ auth: currentUser });
-//   this.getCoords();
-// };
-
-// handleLogout = () => {
-//   localStorage.removeItem("token");
-//   this.setState({ auth: { currentUser: {} } });
-// };
 
 export function addVenueToUser(venue) {
   return dispatch => {
@@ -117,3 +114,43 @@ export function setCoords(pos) {
     }
   };
 }
+
+// getVenuesByLocation = () => {
+//   api.venues
+//     .searchVenuesByLocation(
+//       this.currentUser.lat.toString(),
+//       this.currentUser.lng.toString(),
+//       this.state.radius,
+//       this.state.section
+//     )
+//     .then(d => {
+//       let markers = d.venues.map(venue => {
+//         return { lat: venue.lat, lng: venue.lng };
+//       });
+//       this.setState({
+//         venues: d.venues,
+//         markers: markers
+//       });
+//     });
+// };
+
+const getVenuesByAddress = () => {
+  this.searchVenuesByAddress(
+    this.state.address,
+    this.state.city,
+    this.state.state,
+    this.state.zip,
+    this.state.radius,
+    this.state.section
+  ).then(d => {
+    let markers = d.venues.map(venue => {
+      return { lat: venue.lat, lng: venue.lng };
+    });
+    this.setState({
+      venues: d.venues,
+      lat: d.coords[0],
+      lng: d.coords[1],
+      markers: markers
+    });
+  });
+};

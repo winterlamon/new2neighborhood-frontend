@@ -7,14 +7,15 @@ import api from "../services/api";
 
 class UserVenue extends React.Component {
   state = {
-    userVenue: this.props.userVenue,
-    user: this.props.user,
     visited: false
   };
 
   handleVisitedClick = event => {
     event.preventDefault();
-    api.userVenues.deleteUserVenues(this.state.user, this.state.userVenue);
+    api.userVenues.deleteUserVenues(
+      this.props.currentUser,
+      this.state.userVenue
+    );
   };
 
   // handleVenueRemoval = () => {
@@ -29,18 +30,7 @@ class UserVenue extends React.Component {
         <Row>
           <Card
             className="card"
-            // header={<CardTitle reveal waves='light'/>}
             title={venue.name}
-            // reveal={
-            //   <div>
-            //     <div>
-            //       {props.venue.description ? <p>{props.venue.description}</p> : <div></div>}
-            //     </div>
-            //     <div>
-            //       {props.venue.url ? <p><a href={props.venue.url} target="_blank">Visit Website</a></p> : <div></div>}
-            //     </div>
-            //   </div>
-            // }
             actions={
               !this.state.visited
                 ? [
