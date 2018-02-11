@@ -34,12 +34,12 @@ class UserVenue extends React.Component {
             actions={
               !this.state.visited
                 ? [
-                    <Button onClick={this.handleVisitedClick}>
+                    <Button key={0} onClick={this.handleVisitedClick}>
                       Mark As Visited
                     </Button>
                   ]
                 : [
-                    <Button onClick={this.handleVisitedClick}>
+                    <Button key={1} onClick={this.handleVisitedClick}>
                       Mark As Not Visited
                     </Button>
                   ]

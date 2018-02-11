@@ -11,16 +11,9 @@ export function authReducer(
       lat: null,
       lng: null
     },
-    currentLocation: {
-      address: null,
-      city: null,
-      state: null,
-      zip: null,
+    searchedLocation: {
       lat: null,
-      lng: null,
-      radius: null,
-      section: "food",
-      searched: null
+      lng: null
     },
     venues: [],
     markers: [],
@@ -57,16 +50,9 @@ export function authReducer(
           lat: null,
           lng: null
         },
-        currentLocation: {
-          address: null,
-          city: null,
-          state: null,
-          zip: null,
+        searchedLocation: {
           lat: null,
-          lng: null,
-          radius: null,
-          section: "food",
-          searched: null
+          lng: null
         },
         venues: [],
         markers: [],
@@ -80,6 +66,11 @@ export function authReducer(
           lat: parseFloat(action.pos.coords.latitude),
           lng: parseFloat(action.pos.coords.longitude)
         }
+      };
+    case "SET_SEARCHED_COORDS":
+      return {
+        ...state,
+        searchedLocation: { lat: action.lat, lng: action.lng }
       };
     case "SET_VENUES":
       return {

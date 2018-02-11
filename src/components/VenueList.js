@@ -14,10 +14,8 @@ const VenueList = props => {
     state,
     zip,
     radius,
-    section,
-    lat
+    section
   } = props;
-  console.log(props.venues, props.searched);
   const allVenues = props.venues.map(venue => (
     <Venue
       key={"venue-" + venue.id.toString()}
