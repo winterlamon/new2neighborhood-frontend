@@ -79,6 +79,11 @@ export function authReducer(
           lng: parseFloat(action.pos.coords.longitude)
         }
       };
+    case "SET_MARKERS":
+      return {
+        ...state,
+        markers: action.markers
+      };
     default:
       return state;
   }

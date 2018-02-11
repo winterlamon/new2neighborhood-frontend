@@ -28,6 +28,7 @@ class Login extends React.Component {
         this.setState({ error: true }, alert(res.error));
       } else {
         this.props.history.push("/dashboard");
+        this.props.setCoords();
       }
     });
   };

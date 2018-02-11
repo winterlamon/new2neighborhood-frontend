@@ -123,7 +123,10 @@ const VenueList = props => {
                 <div>
                   <p>Search by current location or by an address</p>
                   <Col offset="s3">
-                    <Button onClick={buttonHandler} name="Location">
+                    <Button
+                      onClick={() => this.props.searchVenuesByLocation()}
+                      name="Location"
+                    >
                       Location
                     </Button>
                   </Col>

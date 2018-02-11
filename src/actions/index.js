@@ -53,9 +53,9 @@ export function getCurrentUser() {
       headers: headers
     })
       .then(res => res.json())
-      .then(console.log);
-    // dispatch({ type: "SET_CURRENT_USER", user });
-    // });
+      .then(user => {
+        dispatch({ type: "SET_CURRENT_USER", user });
+      });
   };
 }
 
@@ -113,6 +113,14 @@ export function setCoords(pos) {
   };
 }
 
+export function setMarkers(markers) {
+  return dispatch => {
+    dispatch({
+      type: "SET_MARKERS",
+      markers
+    });
+  };
+}
 // getVenuesByLocation = () => {
 //   api.venues
 //     .searchVenuesByLocation(

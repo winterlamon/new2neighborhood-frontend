@@ -22,24 +22,25 @@ class DashboardContainer extends React.Component {
     searched: false
   };
 
-  // getVenuesByLocation = () => {
-  //   api.venues
-  //     .searchVenuesByLocation(
-  //       this.currentUser.lat.toString(),
-  //       this.currentUser.lng.toString(),
-  //       this.state.radius,
-  //       this.state.section
-  //     )
-  //     .then(d => {
-  //       let markers = d.venues.map(venue => {
-  //         return { lat: venue.lat, lng: venue.lng };
-  //       });
-  //       this.setState({
-  //         venues: d.venues,
-  //         markers: markers
-  //       });
-  //     });
-  // };
+  getVenuesByLocation = () => {
+    this.props
+      .searchVenuesByLocation(
+        this.currentUser.lat.toString(),
+        this.currentUser.lng.toString(),
+        this.state.radius,
+        this.state.section
+      )
+      .then(d => {
+        let markers = d.venues.map(venue => {
+          return { lat: venue.lat, lng: venue.lng };
+        });
+        this.props.setMarkers(markers);
+        this.setState({
+          venues: d.venues,
+          markers: markers
+        });
+      });
+  };
   //
   // getVenuesByAddress = () => {
   //   api.venues
@@ -65,6 +66,7 @@ class DashboardContainer extends React.Component {
   // };
 
   buttonHandler = event => {
+    console.log("hit");
     if (event.target.name === "Location") {
       this.handleSearch();
       this.getVenuesByLocation();
@@ -84,11 +86,6 @@ class DashboardContainer extends React.Component {
   handleSearch = () => {
     this.setState({ searched: !this.state.searched });
   };
-
-  componentDidMount() {
-    this.props.getCurrentUser();
-    this.props.setCoords();
-  }
 
   render() {
     return (
