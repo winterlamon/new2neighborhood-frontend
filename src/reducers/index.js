@@ -28,6 +28,7 @@ export function authReducer(
   action
 ) {
   switch (action.type) {
+    case "CREATE_USER":
     case "SET_CURRENT_USER":
       return {
         ...state,
@@ -42,8 +43,6 @@ export function authReducer(
         },
         currentLocation: { ...state.currentLocation }
       };
-    case "CREATE_USER":
-      return { ...state, currentUser: action.user };
     case "LOG_OUT_USER":
       return {
         ...state,

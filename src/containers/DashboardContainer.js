@@ -85,6 +85,11 @@ class DashboardContainer extends React.Component {
     this.setState({ searched: !this.state.searched });
   };
 
+  componentDidMount() {
+    this.props.getCurrentUser();
+    this.props.setCoords();
+  }
+
   render() {
     return (
       <div>

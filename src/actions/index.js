@@ -28,10 +28,9 @@ export function login({ username, password }) {
   };
 }
 
-export function signup(firstName, lastName, username, password) {
+export function signup({ firstName, lastName, username, password }) {
   return dispatch => {
     dispatch({ type: "ASYNC_START" });
-
     return fetch(`${API_ROOT}/users`, {
       method: "POST",
       headers: headers,
@@ -41,7 +40,6 @@ export function signup(firstName, lastName, username, password) {
       .then(user => {
         localStorage.setItem("token", user.token);
         dispatch({ type: "CREATE_USER", user });
-        dispatch({ type: "SET_CURRENT_USER", user });
         return user;
       });
   };

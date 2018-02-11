@@ -26,56 +26,6 @@ class App extends Component {
     lng: ""
   };
 
-  // handleLogin = user => {
-  //   const currentUser = { currentUser: user };
-  //   localStorage.setItem("token", user.token);
-  //   this.setState({ auth: currentUser });
-  //   this.getCoords();
-  // };
-  //
-  // handleLogout = () => {
-  //   localStorage.removeItem("token");
-  //   this.setState({ auth: { currentUser: {} } });
-  // };
-
-  // handleSignup = user => {
-  //   console.log('handleSignup in APP')
-  //   const currentUser = {currentUser: user};
-  //   localStorage.setItem('token', user.token);
-  //
-  //   this.setState({auth: currentUser})
-  // }
-
-  // addVenueToUser = venue => {
-  //   const newVenues = this.state.auth.currentUser.venues.push(venue);
-  //   this.setState({ [this.state.auth.currentUser.venues]: newVenues });
-  // };
-  //
-  // setCoords = pos => {
-  //   let lat = pos.coords.latitude;
-  //   let lng = pos.coords.longitude;
-  //   this.setState({ lat: lat, lng: lng });
-  // };
-  //
-  // getCoords = () => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(this.setCoords);
-  //   } else {
-  //     alert("This site requires Geolocation! Please reload and try again.");
-  //   }
-  // };
-
-  componentDidMount() {
-    if (localStorage.getItem("token")) {
-      this.props.getCurrentUser();
-      this.props.setCoords();
-      // .then(() => this.props.history.push('/dashboard'))
-      // } else if (this.state.auth.currentUser.id) {
-      //   this.getCoords();
-      // }
-    }
-  }
-
   render() {
     const loggedIn = !!this.props.currentUser.id;
 

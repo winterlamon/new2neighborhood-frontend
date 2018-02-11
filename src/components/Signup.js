@@ -26,21 +26,13 @@ class Signup extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api.auth
-      .signup(
-        this.state.fields.firstName,
-        this.state.fields.lastName,
-        this.state.fields.username,
-        this.state.fields.password
-      )
-      .then(res => {
-        if (res.error) {
-          this.setState({ error: true }, console.log(res.error));
-        } else {
-          this.props.handleSignup(res);
-          this.props.history.push("/dashboard");
-        }
-      });
+    this.props.signup(this.state.fields).then(res => {
+      if (res.error) {
+        this.setState({ error: true }, alert(res.error));
+      } else {
+        this.props.history.push("/dashboard");
+      }
+    });
   };
 
   render() {
