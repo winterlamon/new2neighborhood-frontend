@@ -117,7 +117,7 @@ const VenueList = props => {
               </Col>
             </Row>
             <Row>
-              {lat !== "" ? (
+              {props.currentUser.lat !== null ? (
                 <div>
                   <p>Search by current location or by an address</p>
                   <Col offset="s3">
@@ -131,7 +131,23 @@ const VenueList = props => {
                     </Button>
                   </Col>
                 </div>
-              ) : null}
+              ) : (
+                <div style={{ height: `5vh` }}>
+                  <div className="preloader-wrapper small active">
+                    <div className="spinner-layer spinner-orange-only">
+                      <div className="circle-clipper left">
+                        <div className="circle" />
+                      </div>
+                      <div className="gap-patch">
+                        <div className="circle" />
+                      </div>
+                      <div className="circle-clipper right">
+                        <div className="circle" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </Row>
           </div>
         </div>
