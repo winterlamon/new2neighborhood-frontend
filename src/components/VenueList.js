@@ -16,6 +16,7 @@ const VenueList = props => {
     radius,
     section
   } = props;
+  console.log("HI");
   const allVenues = props.venues.map(venue => (
     <Venue
       key={"venue-" + venue.id.toString()}
