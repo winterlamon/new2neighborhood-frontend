@@ -9,17 +9,12 @@ import UserContainer from "./UserContainer";
 
 class DashboardContainer extends React.Component {
   state = {
-    venues: this.props.venues,
-    markers: [],
-    lat: this.props.lat,
-    lng: this.props.lng,
     address: "",
     city: "",
     state: "",
     zip: "",
     radius: "1",
-    section: "food",
-    searched: false
+    section: "food"
   };
 
   getVenuesByLocation = () => {
@@ -30,29 +25,17 @@ class DashboardContainer extends React.Component {
       this.state.section
     );
   };
-  //
-  // getVenuesByAddress = () => {
-  //   api.venues
-  //     .searchVenuesByAddress(
-  //       this.state.address,
-  //       this.state.city,
-  //       this.state.state,
-  //       this.state.zip,
-  //       this.state.radius,
-  //       this.state.section
-  //     )
-  //     .then(d => {
-  //       let markers = d.venues.map(venue => {
-  //         return { lat: venue.lat, lng: venue.lng };
-  //       });
-  //       this.setState({
-  //         venues: d.venues,
-  //         lat: d.coords[0],
-  //         lng: d.coords[1],
-  //         markers: markers
-  //       });
-  //     });
-  // };
+
+  getVenuesByAddress = () => {
+    this.props.searchVenuesByAddress(
+      this.state.address,
+      this.state.city,
+      this.state.state,
+      this.state.zip,
+      this.state.radius,
+      this.state.section
+    );
+  };
 
   buttonHandler = event => {
     if (event.target.name === "Location") {
@@ -61,17 +44,13 @@ class DashboardContainer extends React.Component {
     } else if (event.target.name === "searchAgain") {
       this.props.setSearched();
     } else {
-      this.handleSearch();
+      this.props.setSearched();
       this.getVenuesByAddress();
     }
   };
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleSearch = () => {
-    this.setState({ searched: !this.state.searched });
   };
 
   render() {
@@ -81,19 +60,14 @@ class DashboardContainer extends React.Component {
           <div>
             <Col s={6}>
               <VenueContainer
-                // venues={this.state.venues}
                 buttonHandler={this.buttonHandler}
-                // handleChange={this.handleChange}
-                // address={this.state.address}
-                // city={this.state.city}
-                // state={this.state.state}
-                // zip={this.state.zip}
-                // lat={this.state.lat}
-                // lng={this.state.lng}
-                // radius={this.state.radius}
-                // section={this.state.section}
-                // currentUser={this.props.currentUser}
-                // addVenueToUser={this.props.addVenueToUser}
+                handleChange={this.handleChange}
+                address={this.state.address}
+                city={this.state.city}
+                state={this.state.state}
+                zip={this.state.zip}
+                radius={this.state.radius}
+                section={this.state.section}
               />
             </Col>
           </div>

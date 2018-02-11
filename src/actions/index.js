@@ -89,6 +89,43 @@ export function searchVenuesByLocation(lat, lon, radius, selection) {
   };
 }
 
+export function searchVenuesByAddress(
+  address,
+  city,
+  state,
+  zip,
+  radius,
+  selection
+) {
+  return dispatch => {
+    fetch(`${API_ROOT}/venues`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify({
+        address: address,
+        city: city,
+        state: state,
+        zip: zip,
+        radius: radius,
+        selection: selection
+      })
+    })
+      .then(res => res.json())
+      .then(d => {
+        let markers = d.venues.map(venue => {
+          return { lat: venue.lat, lng: venue.lng };
+        });
+        dispatch({
+          type: "SET_SEARCHED_COORDS",
+          lat: d.coords[0],
+          lng: d.coords[1]
+        });
+        dispatch({ type: "SET_VENUES", venues: d.venues });
+        dispatch({ type: "SET_MARKERS", markers: markers });
+      });
+  };
+}
+
 export function setSearched() {
   return dispatch => {
     dispatch({ type: "SET_SEARCHED" });
@@ -124,42 +161,3 @@ export function setMarkers(markers) {
     });
   };
 }
-// getVenuesByLocation = () => {
-//   api.venues
-//     .searchVenuesByLocation(
-//       this.currentUser.lat.toString(),
-//       this.currentUser.lng.toString(),
-//       this.state.radius,
-//       this.state.section
-//     )
-//     .then(d => {
-//       let markers = d.venues.map(venue => {
-//         return { lat: venue.lat, lng: venue.lng };
-//       });
-//       this.setState({
-//         venues: d.venues,
-//         markers: markers
-//       });
-//     });
-// };
-
-const getVenuesByAddress = () => {
-  this.searchVenuesByAddress(
-    this.state.address,
-    this.state.city,
-    this.state.state,
-    this.state.zip,
-    this.state.radius,
-    this.state.section
-  ).then(d => {
-    let markers = d.venues.map(venue => {
-      return { lat: venue.lat, lng: venue.lng };
-    });
-    this.setState({
-      venues: d.venues,
-      lat: d.coords[0],
-      lng: d.coords[1],
-      markers: markers
-    });
-  });
-};
