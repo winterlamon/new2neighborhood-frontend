@@ -23,7 +23,8 @@ export function authReducer(
       searched: null
     },
     venues: [],
-    markers: []
+    markers: [],
+    searched: false
   },
   action
 ) {
@@ -68,7 +69,8 @@ export function authReducer(
           searched: null
         },
         venues: [],
-        markers: []
+        markers: [],
+        searched: false
       };
     case "SET_CURRENT_LOCATION":
       return {
@@ -89,6 +91,8 @@ export function authReducer(
         ...state,
         markers: action.markers
       };
+    case "SET_SEARCHED":
+      return { ...state, searched: !state.searched };
     default:
       return state;
   }

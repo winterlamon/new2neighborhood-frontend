@@ -7,7 +7,6 @@ import Venue from "./Venue";
 
 const VenueList = props => {
   const {
-    venues,
     buttonHandler,
     handleChange,
     address,
@@ -16,11 +15,10 @@ const VenueList = props => {
     zip,
     radius,
     section,
-    searched,
     lat
   } = props;
-
-  const allVenues = venues.map(venue => (
+  console.log(props.venues, props.searched);
+  const allVenues = props.venues.map(venue => (
     <Venue
       key={"venue-" + venue.id.toString()}
       venue={venue}
@@ -31,7 +29,7 @@ const VenueList = props => {
 
   return (
     <div>
-      {searched ? (
+      {props.searched ? (
         <div className="page-item center">
           <Button
             name="searchAgain"

@@ -9,7 +9,6 @@ const MapContainer = props => {
     <div className="page-item center">
       {props.currentUser.lat !== null ? (
         <Map
-          // markers={props.markers}
           lat={props.currentUser.lat}
           lng={props.currentUser.lng}
           containerElement={<div style={{ height: `500px` }} />}

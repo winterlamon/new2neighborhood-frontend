@@ -89,6 +89,12 @@ export function searchVenuesByLocation(lat, lon, radius, selection) {
   };
 }
 
+export function setSearched() {
+  return dispatch => {
+    dispatch({ type: "SET_SEARCHED" });
+  };
+}
+
 export function addVenueToUser(venue) {
   return dispatch => {
     const newVenues = this.state.auth.currentUser.venues.push(venue);

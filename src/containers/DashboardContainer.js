@@ -56,11 +56,10 @@ class DashboardContainer extends React.Component {
 
   buttonHandler = event => {
     if (event.target.name === "Location") {
-      this.handleSearch();
+      this.props.setSearched();
       this.getVenuesByLocation();
     } else if (event.target.name === "searchAgain") {
-      this.handleSearch();
-      this.props.getCoords();
+      this.props.setSearched();
     } else {
       this.handleSearch();
       this.getVenuesByAddress();
@@ -93,7 +92,6 @@ class DashboardContainer extends React.Component {
                 // lng={this.state.lng}
                 // radius={this.state.radius}
                 // section={this.state.section}
-                searched={this.state.searched}
                 // currentUser={this.props.currentUser}
                 // addVenueToUser={this.props.addVenueToUser}
               />
@@ -103,10 +101,9 @@ class DashboardContainer extends React.Component {
             <Col s={6}>
               <Row>
                 <MapContainer
-                  venues={this.state.venues}
-                  // markers={this.state.markers}
-                  // lat={this.state.lat}
-                  // lng={this.state.lng}
+                // markers={this.state.markers}
+                // lat={this.state.lat}
+                // lng={this.state.lng}
                 />
                 <UserContainer
                 // currentUser={this.props.currentUser}

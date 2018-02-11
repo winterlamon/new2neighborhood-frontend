@@ -8,7 +8,7 @@ const VenueContainer = props => {
   return (
     <div>
       <VenueList
-        venues={props.venues}
+        // venues={props.venues}
         buttonHandler={props.buttonHandler}
         handleChange={props.handleChange}
         address={props.address}
@@ -19,7 +19,6 @@ const VenueContainer = props => {
         lng={props.lng}
         radius={props.radius}
         section={props.section}
-        searched={props.searched}
         addVenueToUser={props.addVenueToUser}
       />
     </div>
