@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="709px" height="231px" viewBox="0 0 709 231" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(0.000000, -78.000000)" fill="#FFFFFF">
+            <text id="new" font-family="CooperBlackMS, Cooper Black" font-size="64" font-weight="700">
+                <tspan x="0" y="208">new</tspan>
+            </text>
+            <text id="2" font-family="AvenirNext-DemiBold, Avenir Next" font-size="288" font-weight="500">
+                <tspan x="94" y="288">2</tspan>
+            </text>
+            <polygon id="Triangle" transform="translate(280.000000, 273.000000) rotate(90.000000) translate(-280.000000, -273.000000) " points="280 239 316 307 244 307"></polygon>
+            <text id="neighborhood" font-family="CooperBlackMS, Cooper Black" font-size="64" font-weight="700">
+                <tspan x="256" y="208">neighborhood</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
