@@ -23,11 +23,13 @@ export function authReducer(
       searched: null
     },
     venues: [],
-    markers: []
+    markers: [],
+    searched: false
   },
   action
 ) {
   switch (action.type) {
+    case "CREATE_USER":
     case "SET_CURRENT_USER":
       return {
         ...state,
@@ -42,8 +44,6 @@ export function authReducer(
         },
         currentLocation: { ...state.currentLocation }
       };
-    case "CREATE_USER":
-      return { ...state, currentUser: action.user };
     case "LOG_OUT_USER":
       return {
         ...state,
@@ -69,7 +69,8 @@ export function authReducer(
           searched: null
         },
         venues: [],
-        markers: []
+        markers: [],
+        searched: false
       };
     case "SET_CURRENT_LOCATION":
       return {
@@ -80,6 +81,18 @@ export function authReducer(
           lng: parseFloat(action.pos.coords.longitude)
         }
       };
+    case "SET_VENUES":
+      return {
+        ...state,
+        venues: action.venues
+      };
+    case "SET_MARKERS":
+      return {
+        ...state,
+        markers: action.markers
+      };
+    case "SET_SEARCHED":
+      return { ...state, searched: !state.searched };
     default:
       return state;
   }

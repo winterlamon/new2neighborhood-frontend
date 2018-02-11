@@ -7,7 +7,6 @@ import Venue from "./Venue";
 
 const VenueList = props => {
   const {
-    venues,
     buttonHandler,
     handleChange,
     address,
@@ -16,11 +15,10 @@ const VenueList = props => {
     zip,
     radius,
     section,
-    searched,
     lat
   } = props;
-
-  const allVenues = venues.map(venue => (
+  console.log(props.venues, props.searched);
+  const allVenues = props.venues.map(venue => (
     <Venue
       key={"venue-" + venue.id.toString()}
       venue={venue}
@@ -31,7 +29,7 @@ const VenueList = props => {
 
   return (
     <div>
-      {searched ? (
+      {props.searched ? (
         <div className="page-item center">
           <Button
             name="searchAgain"
@@ -119,7 +117,7 @@ const VenueList = props => {
               </Col>
             </Row>
             <Row>
-              {lat !== "" ? (
+              {props.currentUser.lat !== null ? (
                 <div>
                   <p>Search by current location or by an address</p>
                   <Col offset="s3">
@@ -133,7 +131,23 @@ const VenueList = props => {
                     </Button>
                   </Col>
                 </div>
-              ) : null}
+              ) : (
+                <div style={{ height: `5vh` }}>
+                  <div className="preloader-wrapper small active">
+                    <div className="spinner-layer spinner-orange-only">
+                      <div className="circle-clipper left">
+                        <div className="circle" />
+                      </div>
+                      <div className="gap-patch">
+                        <div className="circle" />
+                      </div>
+                      <div className="circle-clipper right">
+                        <div className="circle" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </Row>
           </div>
         </div>

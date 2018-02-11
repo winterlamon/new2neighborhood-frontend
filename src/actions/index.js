@@ -28,10 +28,9 @@ export function login({ username, password }) {
   };
 }
 
-export function signup(firstName, lastName, username, password) {
+export function signup({ firstName, lastName, username, password }) {
   return dispatch => {
     dispatch({ type: "ASYNC_START" });
-
     return fetch(`${API_ROOT}/users`, {
       method: "POST",
       headers: headers,
@@ -41,7 +40,6 @@ export function signup(firstName, lastName, username, password) {
       .then(user => {
         localStorage.setItem("token", user.token);
         dispatch({ type: "CREATE_USER", user });
-        dispatch({ type: "SET_CURRENT_USER", user });
         return user;
       });
   };
@@ -55,9 +53,9 @@ export function getCurrentUser() {
       headers: headers
     })
       .then(res => res.json())
-      .then(console.log);
-    // dispatch({ type: "SET_CURRENT_USER", user });
-    // });
+      .then(user => {
+        dispatch({ type: "SET_CURRENT_USER", user });
+      });
   };
 }
 
@@ -81,16 +79,19 @@ export function searchVenuesByLocation(lat, lon, radius, selection) {
       })
     })
       .then(res => res.json())
-      .then(console.log)
       .then(d => {
         let markers = d.venues.map(venue => {
           return { lat: venue.lat, lng: venue.lng };
         });
-        this.setState({
-          venues: d.venues,
-          markers: markers
-        });
+        dispatch({ type: "SET_VENUES", venues: d.venues });
+        dispatch({ type: "SET_MARKERS", markers: markers });
       });
+  };
+}
+
+export function setSearched() {
+  return dispatch => {
+    dispatch({ type: "SET_SEARCHED" });
   };
 }
 
@@ -115,6 +116,14 @@ export function setCoords(pos) {
   };
 }
 
+export function setMarkers(markers) {
+  return dispatch => {
+    dispatch({
+      type: "SET_MARKERS",
+      markers
+    });
+  };
+}
 // getVenuesByLocation = () => {
 //   api.venues
 //     .searchVenuesByLocation(
