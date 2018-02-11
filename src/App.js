@@ -28,6 +28,7 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.token) {
       this.props.getCurrentUser();
+      this.props.setCoords();
     }
   }
   render() {

@@ -94,20 +94,20 @@ class DashboardContainer extends React.Component {
           <div>
             <Col s={6}>
               <VenueContainer
-              // venues={this.state.venues}
-              // buttonHandler={this.buttonHandler}
-              // handleChange={this.handleChange}
-              // address={this.state.address}
-              // city={this.state.city}
-              // state={this.state.state}
-              // zip={this.state.zip}
-              // lat={this.state.lat}
-              // lng={this.state.lng}
-              // radius={this.state.radius}
-              // section={this.state.section}
-              // searched={this.state.searched}
-              // currentUser={this.props.currentUser}
-              // addVenueToUser={this.props.addVenueToUser}
+                // venues={this.state.venues}
+                // buttonHandler={this.buttonHandler}
+                // handleChange={this.handleChange}
+                // address={this.state.address}
+                // city={this.state.city}
+                // state={this.state.state}
+                // zip={this.state.zip}
+                // lat={this.state.lat}
+                // lng={this.state.lng}
+                // radius={this.state.radius}
+                // section={this.state.section}
+                searched={this.state.searched}
+                // currentUser={this.props.currentUser}
+                // addVenueToUser={this.props.addVenueToUser}
               />
             </Col>
           </div>
