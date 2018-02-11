@@ -8,6 +8,7 @@ This app uses:
 * Redux
 * Materialize CSS
 * React Materialize
+* Foursquare API
 * Google Maps via react-google-maps
 
 ## Installation
