@@ -3,7 +3,6 @@ import { Button, Col, Row, Input } from "react-materialize";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
-import api from "../services/api";
 
 class Signup extends React.Component {
   state = {

@@ -79,6 +79,11 @@ export function authReducer(
           lng: parseFloat(action.pos.coords.longitude)
         }
       };
+    case "SET_VENUES":
+      return {
+        ...state,
+        venues: action.venues
+      };
     case "SET_MARKERS":
       return {
         ...state,

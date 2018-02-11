@@ -79,15 +79,12 @@ export function searchVenuesByLocation(lat, lon, radius, selection) {
       })
     })
       .then(res => res.json())
-      .then(console.log)
       .then(d => {
         let markers = d.venues.map(venue => {
           return { lat: venue.lat, lng: venue.lng };
         });
-        this.setState({
-          venues: d.venues,
-          markers: markers
-        });
+        dispatch({ type: "SET_VENUES", venues: d.venues });
+        dispatch({ type: "SET_MARKERS", markers: markers });
       });
   };
 }

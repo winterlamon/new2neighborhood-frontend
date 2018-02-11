@@ -23,23 +23,12 @@ class DashboardContainer extends React.Component {
   };
 
   getVenuesByLocation = () => {
-    this.props
-      .searchVenuesByLocation(
-        this.currentUser.lat.toString(),
-        this.currentUser.lng.toString(),
-        this.state.radius,
-        this.state.section
-      )
-      .then(d => {
-        let markers = d.venues.map(venue => {
-          return { lat: venue.lat, lng: venue.lng };
-        });
-        this.props.setMarkers(markers);
-        this.setState({
-          venues: d.venues,
-          markers: markers
-        });
-      });
+    this.props.searchVenuesByLocation(
+      this.props.currentUser.lat.toString(),
+      this.props.currentUser.lng.toString(),
+      this.state.radius,
+      this.state.section
+    );
   };
   //
   // getVenuesByAddress = () => {
@@ -66,7 +55,6 @@ class DashboardContainer extends React.Component {
   // };
 
   buttonHandler = event => {
-    console.log("hit");
     if (event.target.name === "Location") {
       this.handleSearch();
       this.getVenuesByLocation();
@@ -95,7 +83,7 @@ class DashboardContainer extends React.Component {
             <Col s={6}>
               <VenueContainer
                 // venues={this.state.venues}
-                // buttonHandler={this.buttonHandler}
+                buttonHandler={this.buttonHandler}
                 // handleChange={this.handleChange}
                 // address={this.state.address}
                 // city={this.state.city}

@@ -5,7 +5,6 @@ import * as actions from "../actions";
 import Map from "../components/Map";
 
 const MapContainer = props => {
-  console.log("lat lng", props.currentUser);
   return (
     <div className="page-item center">
       {props.currentUser.lat !== null ? (

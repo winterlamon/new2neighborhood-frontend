@@ -25,11 +25,15 @@ class App extends Component {
     lat: "",
     lng: ""
   };
+
   componentDidMount() {
     if (localStorage.token) {
       this.props.getCurrentUser();
       this.props.setCoords();
     }
+    // if (localStorage.token && this.props.lat === null) {
+    //   this.props.setCoords();
+    // }
   }
   render() {
     const loggedIn = !!this.props.currentUser.id;
