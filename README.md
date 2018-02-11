@@ -1,6 +1,15 @@
+<h1 align=center><img src="/n2n-logo-black.png" alt="New2Neighborhood logo" />
+
 # New2Neighborhood
 
 New2Neighborhood allows you to search for bars and restaurants using either your current location or by setting an address. When you've found a venue that strikes your fancy, you can save it to a list of venues for you to explore at your leisure. Think of it as your food and drink to-do list! Once you have visited a venue, you can mark it off and pat yourself on the back for your successful gastro expedition. Cheers to you, young explorer!
+
+## Credits
+
+New2Neighborhood is a project made by:
+
+* Winter LaMon - https://github.com/winterlamon
+* Jordan Storms - https://github.com/jcstorms1
 
 ## License
 
