@@ -7,7 +7,7 @@ import { authReducer } from "./reducers";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-// import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from "./registerServiceWorker";
 import injectTapEventPlugin from "react-tap-event-plugin";
 
 injectTapEventPlugin();
@@ -33,4 +33,4 @@ const Root = () => {
 };
 
 ReactDOM.render(<Root />, document.getElementById("root"));
-// registerServiceWorker();
+registerServiceWorker();
