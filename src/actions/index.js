@@ -1,3 +1,5 @@
+import swal from "sweetalert";
+
 const API_ROOT = `http://localhost:3001`;
 
 const token = localStorage.getItem("token");
@@ -180,6 +182,7 @@ export function addVenueToUser(user, venue) {
         } else {
           let userdata = user.user.venues;
           dispatch({ type: "ADD_USER_VENUE", userdata });
+          swal(`${venue.name} has been saved to your venues.`);
           return userdata;
         }
       });

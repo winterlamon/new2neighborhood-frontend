@@ -3,6 +3,7 @@ import { Button, Col, Row, Input } from "react-materialize";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
+import swal from "sweetalert";
 
 class Signup extends React.Component {
   state = {
@@ -27,7 +28,7 @@ class Signup extends React.Component {
     event.preventDefault();
     this.props.signup(this.state.fields).then(res => {
       if (res.error) {
-        this.setState({ error: true }, alert(res.error));
+        this.setState({ error: true }, swal(res.error));
       } else {
         this.props.history.push("/dashboard");
         this.props.setCoords();

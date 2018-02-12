@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 import { Button, Col, Input, Modal, Row } from "react-materialize";
+import swal from "sweetalert";
 
 class Login extends React.Component {
   state = {
@@ -25,10 +26,10 @@ class Login extends React.Component {
     event.preventDefault();
     this.props.login(this.state.fields).then(res => {
       if (res.error) {
-        this.setState({ error: true }, alert(res.error));
+        this.setState({ error: true }, swal(res.error));
       } else {
-        this.props.history.push("/dashboard");
         this.props.setCoords();
+        this.props.history.push("/dashboard");
       }
     });
   };

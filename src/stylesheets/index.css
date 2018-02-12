@@ -65,3 +65,36 @@ input {
   top: 45%;
   margin: auto;
 }
+
+/* ===== swal ===== */
+
+.swal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.swal-modal {
+  background-color: #ffffff;
+  border: 3px solid white;
+  border-radius: 2px;
+}
+
+.swal-text {
+  background-color: #ffffff;
+  padding: 1rem;
+  border: 1px solid #ffffff;
+  display: block;
+  margin: 22px;
+  text-align: center;
+  color: #000000;
+}
+
+.swal-button {
+  text-decoration: none;
+  color: #fff;
+  background-color: #26a69a;
+  border-radius: 2px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: 0.2s ease-out;
+  cursor: pointer;
+}
