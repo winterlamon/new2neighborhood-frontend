@@ -16,7 +16,7 @@ const VenueList = props => {
     radius,
     section
   } = props;
-  console.log("HI");
+  // console.log("HI");
   const allVenues = props.venues.map(venue => (
     <Venue key={"venue-" + venue.id.toString()} venue={venue} />
   ));
@@ -113,20 +113,48 @@ const VenueList = props => {
             </Row>
             <Row>
               {props.currentUser.lat !== null ? (
+                // <div>
+                //   <p>Search by current location or by an address</p>
+                //   <Col offset="s3">
+                //     <Button onClick={buttonHandler} name="Location">
+                //       Location
+                //     </Button>
+                //   </Col>
+                //   <Col>
+                //     <Button onClick={buttonHandler} name="Address">
+                //       Address
+                //     </Button>
+                //   </Col>
+                // </div>
                 <div>
                   <p>Search by current location or by an address</p>
-                  <Col offset="s3">
+                  <Col l={3} s={12} />
+                  <Col l={3} s={12}>
                     <Button onClick={buttonHandler} name="Location">
                       Location
                     </Button>
                   </Col>
-                  <Col>
+                  <Col l={3} s={12}>
                     <Button onClick={buttonHandler} name="Address">
                       Address
                     </Button>
                   </Col>
+                  <Col l={3} s={12} />
                 </div>
               ) : (
+                // <div>
+                //   <p>Search by current location or by an address</p>
+                //   <Col offset="s3">
+                //     <Button onClick={buttonHandler} name="Location">
+                //       Location
+                //     </Button>
+                //   </Col>
+                //   <Col>
+                //     <Button onClick={buttonHandler} name="Address">
+                //       Address
+                //     </Button>
+                //   </Col>
+                // </div>
                 <div style={{ height: `5vh` }}>
                   <div className="preloader-wrapper small active">
                     <div className="spinner-layer spinner-orange-only">

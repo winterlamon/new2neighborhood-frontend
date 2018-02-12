@@ -31,6 +31,12 @@ input {
   color: #000000;
 }
 
+.button-inline {
+  display: flex;
+  align-content: center;
+  padding: 2rem;
+}
+
 .card {
   background-color: #f1f8e9;
 }
@@ -46,6 +52,10 @@ input {
 .navbar {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.padding {
+  padding: 1rem;
 }
 
 .page-item {

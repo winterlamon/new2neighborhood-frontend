@@ -31,6 +31,20 @@ With this app, a user can:
 * save venues to their profile
 * mark venues as visited
 
+<h1 align=center><img src="/src/assets/screenshots/n2n-home.png" alt="New2Neighborhood home page" /></h1>
+
+<h1 align=center><img src="/src/assets/screenshots/n2n-signup.png" alt="New2Neighborhood signup page" /></h1>
+
+<h1 align=center><img src="/src/assets/screenshots/n2n-login.png" alt="New2Neighborhood login page" /></h1>
+
+<h1 align=center><img src="/src/assets/screenshots/n2n-dashboard-location.png" alt="New2Neighborhood dashboard" /></h1>
+
+<h1 align=center><img src="/src/assets/screenshots/n2n-search-results.png" alt="New2Neighborhood dashboard displayed with search results" /></h1>
+
+<h1 align=center><img src="/src/assets/screenshots/n2n-saved-venues.png" alt="New2Neighborhood profile with list of user's saved venues" /></h1>
+
+<h1 align=center><img src="/src/assets/screenshots/n2n-visited-venue.png" alt="New2Neighborhood list of user's saved venues with venue saved" /></h1>
+
 ## Contributing
 
 To report bugs, please use the <a href="https://github.com/winterlamon/new2neighborhood-frontend/issues">issue tracker</a>.
