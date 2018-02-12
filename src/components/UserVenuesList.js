@@ -8,16 +8,8 @@ const UserVenueList = props => {
   let sortedVenues = props.currentUser.venues.sort(function(a, b) {
     return a.visited - b.visited;
   });
-  let allUserVenues = sortedVenues.map(venue => (
-    <UserVenue
-      key={
-        "user-" +
-        props.currentUser.id.toString() +
-        "venue-" +
-        venue.id.toString()
-      }
-      venue={venue}
-    />
+  let allUserVenues = sortedVenues.map((venue, index) => (
+    <UserVenue key={index} venue={venue} />
   ));
 
   return (
