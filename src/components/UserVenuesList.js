@@ -20,7 +20,15 @@ const UserVenueList = props => {
     />
   ));
 
-  return <div className="page-item center">{allUserVenues}</div>;
+  return (
+    <div className="page-item center">
+      {props.currentUser.venues.length === 0 ? (
+        <p>You currently don't have any venues saved.</p>
+      ) : (
+        allUserVenues
+      )}
+    </div>
+  );
 };
 
 export default withRouter(

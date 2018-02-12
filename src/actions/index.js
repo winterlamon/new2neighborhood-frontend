@@ -40,6 +40,7 @@ export function signup({ firstName, lastName, username, password }) {
         let userdata = user.user;
         localStorage.setItem("token", user.token);
         dispatch({ type: "CREATE_USER", userdata });
+        dispatch({ type: "SET_CURRENT_USER", userdata });
         return userdata;
       });
   };
