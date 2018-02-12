@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as actions from "../actions";
 import { Col, Input, Row, Button } from "react-materialize";
 import Venue from "./Venue";
 
 const VenueList = props => {
   const {
-    venues,
     buttonHandler,
     handleChange,
     address,
@@ -12,32 +14,26 @@ const VenueList = props => {
     state,
     zip,
     radius,
-    section,
-    searched,
-    lat
+    section
   } = props;
-
-  const allVenues = venues.map(venue => (
-    <Venue
-      key={"venue-" + venue.id.toString()}
-      venue={venue}
-      currentUser={props.currentUser}
-      addVenueToUser={props.addVenueToUser}
-    />
+  console.log("HI");
+  const allVenues = props.venues.map(venue => (
+    <Venue key={"venue-" + venue.id.toString()} venue={venue} />
   ));
 
   return (
     <div>
-      {searched ? (
+      {props.searched ? (
         <div className="page-item center">
-          <Button
-            name="searchAgain"
-            onClick={buttonHandler}
-            className="important-button"
-          >
-            Search Again
-          </Button>
-
+          <div className="page-item">
+            <Button
+              name="searchAgain"
+              onClick={buttonHandler}
+              className="important-button"
+            >
+              Search Again
+            </Button>
+          </div>
           <div className="venues">
             <Row>{allVenues}</Row>
           </div>
@@ -116,7 +112,7 @@ const VenueList = props => {
               </Col>
             </Row>
             <Row>
-              {lat !== "" ? (
+              {props.currentUser.lat !== null ? (
                 <div>
                   <p>Search by current location or by an address</p>
                   <Col offset="s3">
@@ -130,7 +126,23 @@ const VenueList = props => {
                     </Button>
                   </Col>
                 </div>
-              ) : null}
+              ) : (
+                <div style={{ height: `5vh` }}>
+                  <div className="preloader-wrapper small active">
+                    <div className="spinner-layer spinner-orange-only">
+                      <div className="circle-clipper left">
+                        <div className="circle" />
+                      </div>
+                      <div className="gap-patch">
+                        <div className="circle" />
+                      </div>
+                      <div className="circle-clipper right">
+                        <div className="circle" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </Row>
           </div>
         </div>
@@ -139,4 +151,11 @@ const VenueList = props => {
   );
 };
 
-export default VenueList;
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer
+    }),
+    actions
+  )(VenueList)
+);

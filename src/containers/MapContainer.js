@@ -1,14 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import * as actions from "../actions";
 import Map from "../components/Map";
 
 const MapContainer = props => {
   return (
     <div className="page-item center">
-      {props.lat !== "" ? (
+      {props.currentUser.lat !== null ? (
         <Map
-          markers={props.markers}
-          lat={props.lat}
-          lng={props.lng}
+          lat={props.currentUser.lat}
+          lng={props.currentUser.lng}
           containerElement={<div style={{ height: `500px` }} />}
           mapElement={<div style={{ height: `100%`, width: `100%` }} />}
         />
@@ -33,4 +35,11 @@ const MapContainer = props => {
   );
 };
 
-export default MapContainer;
+export default withRouter(
+  connect(
+    state => ({
+      ...state.authReducer
+    }),
+    actions
+  )(MapContainer)
+);
