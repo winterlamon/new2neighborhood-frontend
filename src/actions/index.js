@@ -21,9 +21,10 @@ export function login({ username, password }) {
     })
       .then(res => res.json())
       .then(user => {
+        let userdata = user.user;
         localStorage.setItem("token", user.token);
-        dispatch({ type: "SET_CURRENT_USER", user });
-        return user;
+        dispatch({ type: "SET_CURRENT_USER", userdata });
+        return userdata;
       });
   };
 }
@@ -38,9 +39,10 @@ export function signup({ firstName, lastName, username, password }) {
     })
       .then(res => res.json())
       .then(user => {
+        let userdata = user.user;
         localStorage.setItem("token", user.token);
-        dispatch({ type: "CREATE_USER", user });
-        return user;
+        dispatch({ type: "CREATE_USER", userdata });
+        return userdata;
       });
   };
 }
@@ -54,7 +56,11 @@ export function getCurrentUser() {
     })
       .then(res => res.json())
       .then(user => {
-        dispatch({ type: "SET_CURRENT_USER", user });
+        let userdata = user.user;
+        userdata.token = user.token;
+        localStorage.setItem("token", user.token);
+        dispatch({ type: "SET_CURRENT_USER", userdata });
+        return userdata;
       });
   };
 }
@@ -132,10 +138,23 @@ export function setSearched() {
   };
 }
 
-export function addVenueToUser(venue) {
+export function addVenueToUser(user, venue) {
   return dispatch => {
-    const newVenues = this.state.auth.currentUser.venues.push(venue);
-    this.setState({ [this.state.auth.currentUser.venues]: newVenues });
+    return fetch(`${API_ROOT}/user_venues`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify({ user_id: user.id, venue_id: venue.id })
+    })
+      .then(res => res.json())
+      .then(user => {
+        if (user.error) {
+          alert(user.error);
+        } else {
+          let userdata = user.user.venues;
+          dispatch({ type: "ADD_USER_VENUE", userdata });
+          return userdata;
+        }
+      });
   };
 }
 

@@ -3,13 +3,11 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
 import { Button, Card, Row } from "react-materialize";
-import api from "../services/api";
 
 class Venue extends React.Component {
   handleClick = event => {
     event.preventDefault();
-    api.userVenues.createUserVenues(this.props.currentUser, this.props.venue);
-    this.props.addVenueToUser(this.props.venue);
+    this.props.addVenueToUser(this.props.currentUser, this.props.venue);
   };
 
   render() {

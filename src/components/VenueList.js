@@ -18,12 +18,7 @@ const VenueList = props => {
   } = props;
   console.log("HI");
   const allVenues = props.venues.map(venue => (
-    <Venue
-      key={"venue-" + venue.id.toString()}
-      venue={venue}
-      currentUser={props.currentUser}
-      addVenueToUser={props.addVenueToUser}
-    />
+    <Venue key={"venue-" + venue.id.toString()} venue={venue} />
   ));
 
   return (

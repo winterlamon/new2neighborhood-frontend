@@ -28,12 +28,12 @@ export function authReducer(
         ...state,
         currentUser: {
           ...state.currentUser,
-          id: action.user.id,
-          first_name: action.user.first_name,
-          last_name: action.user.last_name,
-          username: action.user.username,
-          venues: action.user.venues,
-          token: action.user.token
+          id: action.userdata.id,
+          first_name: action.userdata.first_name,
+          last_name: action.userdata.last_name,
+          username: action.userdata.email,
+          token: action.userdata.token,
+          venues: action.userdata.venues
         },
         currentLocation: { ...state.currentLocation }
       };
@@ -45,8 +45,8 @@ export function authReducer(
           first_name: null,
           last_name: null,
           username: null,
-          venues: [],
           token: null,
+          venues: [],
           lat: null,
           lng: null
         },
@@ -84,6 +84,11 @@ export function authReducer(
       };
     case "SET_SEARCHED":
       return { ...state, searched: !state.searched };
+    case "ADD_USER_VENUE":
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, venues: action.userdata }
+      };
     default:
       return state;
   }
