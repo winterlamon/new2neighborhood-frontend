@@ -82,6 +82,11 @@ export function authReducer(
         ...state,
         markers: action.markers
       };
+    case "CLEAR_MARKERS":
+      return {
+        ...state,
+        markers: []
+      };
     case "SET_SEARCHED":
       return { ...state, searched: !state.searched };
     case "ADD_USER_VENUE":

@@ -43,6 +43,7 @@ class DashboardContainer extends React.Component {
       this.getVenuesByLocation();
     } else if (event.target.name === "searchAgain") {
       this.props.setSearched();
+      this.props.clearMarkers();
     } else {
       this.props.setSearched();
       this.getVenuesByAddress();

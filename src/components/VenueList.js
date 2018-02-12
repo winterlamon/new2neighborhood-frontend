@@ -25,14 +25,15 @@ const VenueList = props => {
     <div>
       {props.searched ? (
         <div className="page-item center">
-          <Button
-            name="searchAgain"
-            onClick={buttonHandler}
-            className="important-button"
-          >
-            Search Again
-          </Button>
-
+          <div className="page-item">
+            <Button
+              name="searchAgain"
+              onClick={buttonHandler}
+              className="important-button"
+            >
+              Search Again
+            </Button>
+          </div>
           <div className="venues">
             <Row>{allVenues}</Row>
           </div>

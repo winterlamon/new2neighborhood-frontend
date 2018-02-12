@@ -161,6 +161,14 @@ export function setMarkers(markers) {
   };
 }
 
+export function clearMarkers() {
+  return dispatch => {
+    dispatch({
+      type: "CLEAR_MARKERS"
+    });
+  };
+}
+
 export function addVenueToUser(user, venue) {
   return dispatch => {
     return fetch(`${API_ROOT}/user_venues`, {
@@ -198,12 +206,12 @@ export function updateUserVenue(venue) {
   };
 }
 
-export function deleteUserVenue(uservenue) {
+export function deleteUserVenue(venue) {
   return dispatch => {
-    return fetch(`${API_ROOT}/user_venues/${uservenue.id}`, {
+    return fetch(`${API_ROOT}/user_venues/${venue.user_venue_id}`, {
       method: "DELETE",
       headers: headers,
-      body: JSON.stringify({ uservenue })
+      body: JSON.stringify(venue)
     })
       .then(res => res.json())
       .then(user => {
