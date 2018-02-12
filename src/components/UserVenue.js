@@ -15,10 +15,6 @@ class UserVenue extends React.Component {
     this.props.updateUserVenue(this.props.venue);
   };
 
-  // handleVenueRemoval = () => {
-  //   api.userVenues.updateUserVenues(this.props.user, this.props.venue, this.state.visited)
-  // }
-
   render() {
     const venue = this.props.venue;
 
@@ -36,14 +32,8 @@ class UserVenue extends React.Component {
                     </Button>
                   ]
                 : null
-              // [
-              //     <Button key={1} onClick={this.handleVisitedClick}>
-              //       Mark As Not Visited
-              //     </Button>
-              //   ]
             }
           >
-            {/* // [<Button onClick={this.handleVenueRemoval} >Remove</Button>]}> */}
             <p>
               {venue.address}
               {", " + venue.city}

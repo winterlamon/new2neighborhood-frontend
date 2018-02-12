@@ -76,20 +76,20 @@ const createUserVenues = (user, venue) => {
   });
 };
 
-const updateUserVenues = (userVenue, visited) => {
-  return fetch(`${API_ROOT}/user_venues/${userVenue.id}`, {
+const updateUserVenues = venue => {
+  return fetch(`${API_ROOT}/user_venues/${venue.user_venue_id}`, {
     method: "PATCH",
     headers: headers,
-    body: JSON.stringify({ visited: visited })
+    body: JSON.stringify({ visited: true })
     // }).then(res => res.json())
   });
 };
 
-const deleteUserVenues = (user, venue) => {
-  return fetch(`${API_ROOT}/user_venues`, {
+const deleteUserVenues = venue => {
+  return fetch(`${API_ROOT}/user_venues/${venue.user_venue_id}`, {
     method: "DELETE",
     headers: headers,
-    body: JSON.stringify({ user_id: user.id, venue_id: venue.id })
+    body: JSON.stringify(venue)
   })
     .then(res => res.json())
     .then(venues => user.venues);

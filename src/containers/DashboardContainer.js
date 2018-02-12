@@ -75,16 +75,10 @@ class DashboardContainer extends React.Component {
           <div>
             <Col s={6}>
               <Row>
-                <MapContainer
-                // markers={this.state.markers}
-                // lat={this.state.lat}
-                // lng={this.state.lng}
-                />
+                <MapContainer />
               </Row>
               <Row>
-                <UserContainer
-                // currentUser={this.props.currentUser}
-                />
+                <UserContainer />
               </Row>
             </Col>
           </div>

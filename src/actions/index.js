@@ -1,5 +1,3 @@
-// import api from "../services/api";
-
 const API_ROOT = `http://localhost:3001`;
 
 const token = localStorage.getItem("token");
@@ -50,7 +48,6 @@ export function signup({ firstName, lastName, username, password }) {
 export function getCurrentUser() {
   return dispatch => {
     dispatch({ type: "ASYNC_START" });
-
     return fetch(`${API_ROOT}/current_user`, {
       headers: headers
     })
@@ -141,7 +138,6 @@ export function setSearched() {
 export function setCoords(pos) {
   return dispatch => {
     dispatch({ type: "ASYNC_START" });
-
     if (navigator.geolocation) {
       return navigator.geolocation.getCurrentPosition(pos =>
         dispatch({ type: "SET_CURRENT_LOCATION", pos })
@@ -198,7 +194,6 @@ export function updateUserVenue(venue) {
     })
       .then(res => res.json())
       .then(user => {
-        // debugger;
         let userdata = user.user.venues;
         dispatch({ type: "ADD_USER_VENUE", userdata });
         return userdata;
