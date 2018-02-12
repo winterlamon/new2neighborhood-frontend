@@ -15,11 +15,11 @@ This app uses:
 
 To run the software on your local server, run `npm install && npm start`.
 
-Note: The api that compliments this repo (https://github.com/winterlamon/new2neighborhood-api), when run locally, should use port 3001. The front-end repo should <strong><em>not</strong></em> be run on port 3001.
+Note: The API that compliments this repo (https://github.com/winterlamon/new2neighborhood-api), when run locally, should use port 3001. The front-end repo should <strong><em>not</strong></em> be run on port 3001.
 
 ## Usage
 
-This repository is the front end that runs with its api repo (https://github.com/winterlamon/new2neighborhood-api).
+This repository is the front end that runs with its API repo (https://github.com/winterlamon/new2neighborhood-api).
 
 With this app, a user can:
 
