@@ -3,7 +3,6 @@ import { Button, Card, Row } from "react-materialize";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import * as actions from "../actions";
-import api from "../services/api";
 
 class UserVenue extends React.Component {
   state = {
@@ -12,10 +11,8 @@ class UserVenue extends React.Component {
 
   handleVisitedClick = event => {
     event.preventDefault();
-    api.userVenues.deleteUserVenues(
-      this.props.currentUser,
-      this.state.userVenue
-    );
+    this.setState({ visited: true });
+    this.props.updateUserVenue(this.props.venue);
   };
 
   // handleVenueRemoval = () => {
@@ -23,7 +20,7 @@ class UserVenue extends React.Component {
   // }
 
   render() {
-    const venue = this.props.userVenue;
+    const venue = this.props.venue;
 
     return (
       <div>
@@ -32,17 +29,18 @@ class UserVenue extends React.Component {
             className="card"
             title={venue.name}
             actions={
-              !this.state.visited
+              !this.props.venue.visited
                 ? [
                     <Button key={0} onClick={this.handleVisitedClick}>
                       Mark As Visited
                     </Button>
                   ]
-                : [
-                    <Button key={1} onClick={this.handleVisitedClick}>
-                      Mark As Not Visited
-                    </Button>
-                  ]
+                : null
+              // [
+              //     <Button key={1} onClick={this.handleVisitedClick}>
+              //       Mark As Not Visited
+              //     </Button>
+              //   ]
             }
           >
             {/* // [<Button onClick={this.handleVenueRemoval} >Remove</Button>]}> */}
@@ -53,7 +51,7 @@ class UserVenue extends React.Component {
             </p>
             <div>
               <p>
-                {this.state.visited ? (
+                {this.props.venue.visited ? (
                   <em>
                     <strong>You've been here before.</strong>
                   </em>

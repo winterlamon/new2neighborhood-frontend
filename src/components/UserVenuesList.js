@@ -5,10 +5,15 @@ import * as actions from "../actions";
 import UserVenue from "./UserVenue";
 
 const UserVenueList = props => {
-  const allUserVenues = props.currentUser.venues.map(userVenue => (
+  const allUserVenues = props.currentUser.venues.map(venue => (
     <UserVenue
-      key={"userVenue-" + userVenue.id.toString()}
-      userVenue={userVenue}
+      key={
+        "user-" +
+        props.currentUser.id.toString() +
+        "venue-" +
+        venue.id.toString()
+      }
+      venue={venue}
     />
   ));
 

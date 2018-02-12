@@ -89,6 +89,16 @@ export function authReducer(
         ...state,
         currentUser: { ...state.currentUser, venues: action.userdata }
       };
+    case "UPDATE_USER_VENUE":
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, venues: action.userdata }
+      };
+    case "REMOVE_USER_VENUE":
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, venues: action.userdata }
+      };
     default:
       return state;
   }

@@ -138,26 +138,6 @@ export function setSearched() {
   };
 }
 
-export function addVenueToUser(user, venue) {
-  return dispatch => {
-    return fetch(`${API_ROOT}/user_venues`, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify({ user_id: user.id, venue_id: venue.id })
-    })
-      .then(res => res.json())
-      .then(user => {
-        if (user.error) {
-          alert(user.error);
-        } else {
-          let userdata = user.user.venues;
-          dispatch({ type: "ADD_USER_VENUE", userdata });
-          return userdata;
-        }
-      });
-  };
-}
-
 export function setCoords(pos) {
   return dispatch => {
     dispatch({ type: "ASYNC_START" });
@@ -178,5 +158,58 @@ export function setMarkers(markers) {
       type: "SET_MARKERS",
       markers
     });
+  };
+}
+
+export function addVenueToUser(user, venue) {
+  return dispatch => {
+    return fetch(`${API_ROOT}/user_venues`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify({ user_id: user.id, venue_id: venue.id })
+    })
+      .then(res => res.json())
+      .then(user => {
+        if (user.error) {
+          alert(user.error);
+        } else {
+          let userdata = user.user.venues;
+          dispatch({ type: "ADD_USER_VENUE", userdata });
+          return userdata;
+        }
+      });
+  };
+}
+
+export function updateUserVenue(venue) {
+  return dispatch => {
+    return fetch(`${API_ROOT}/user_venues/${venue.user_venue_id}`, {
+      method: "PATCH",
+      headers: headers,
+      body: JSON.stringify({ visited: true })
+    })
+      .then(res => res.json())
+      .then(user => {
+        // debugger;
+        let userdata = user.user.venues;
+        dispatch({ type: "ADD_USER_VENUE", userdata });
+        return userdata;
+      });
+  };
+}
+
+export function deleteUserVenue(uservenue) {
+  return dispatch => {
+    return fetch(`${API_ROOT}/user_venues/${uservenue.id}`, {
+      method: "DELETE",
+      headers: headers,
+      body: JSON.stringify({ uservenue })
+    })
+      .then(res => res.json())
+      .then(user => {
+        let userdata = user.user.venues;
+        dispatch({ type: "REMOVE_USER_VENUE", userdata });
+        return userdata;
+      });
   };
 }
