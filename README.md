@@ -4,6 +4,7 @@ New2Neighborhood allows you to search for bars and restaurants using either your
 
 This app uses:
 
+* Ruby on Rails API
 * React
 * Redux
 * Materialize CSS
