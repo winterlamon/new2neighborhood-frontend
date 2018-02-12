@@ -41,10 +41,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <NavBar
-          // currentUser={this.state.auth.currentUser}
-          // handleLogout={this.handleLogout}
-          />
+          <NavBar />
           <Route
             exact
             path="/"
@@ -59,40 +56,21 @@ class App extends Component {
               return loggedIn ? (
                 <Redirect to="/dashboard" />
               ) : (
-                <Login
-                  {...props}
-                  // handleLogin={this.handleLogin}
-                  // currentUser={this.state.auth.currentUser}
-                />
+                <Login {...props} />
               );
             }}
           />
           <Route
             exact
             path="/signup"
-            component={props => (
-              <Signup
-                {...props}
-                // handleSignup={api.auth.signup}
-                // currentUser={this.state.auth.currentUser}
-              />
-            )}
+            component={props => <Signup {...props} />}
           />
           <Route
             exact
             path="/dashboard"
             component={props => {
               return loggedIn ? (
-                <DashboardContainer
-                  {...props}
-                  venues={this.props.venues}
-                  // currentUser={this.state.auth.currentUser}
-                  // addVenueToUser={this.addVenueToUser}
-                  // coords={this.state.coords}
-                  // lat={this.state.lat}
-                  // lng={this.state.lng}
-                  // getCoords={this.getCoords}
-                />
+                <DashboardContainer {...props} venues={this.props.venues} />
               ) : (
                 <Redirect to="/login" />
               );
