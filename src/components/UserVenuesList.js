@@ -5,7 +5,10 @@ import * as actions from "../actions";
 import UserVenue from "./UserVenue";
 
 const UserVenueList = props => {
-  const allUserVenues = props.currentUser.venues.map(venue => (
+  let sortedVenues = props.currentUser.venues.sort(function(a, b) {
+    return a.visited - b.visited;
+  });
+  let allUserVenues = sortedVenues.map(venue => (
     <UserVenue
       key={
         "user-" +
