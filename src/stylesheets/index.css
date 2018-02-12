@@ -39,6 +39,15 @@ input {
   background-color: #e65100;
 }
 
+.logo {
+  font-family: "Shrikhand", cursive;
+}
+
+.navbar {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .page-item {
   background: #ffffff;
   opacity: 0.95;
