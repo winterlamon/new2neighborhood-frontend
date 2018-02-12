@@ -146,7 +146,7 @@ export function setCoords(pos) {
         dispatch({ type: "SET_CURRENT_LOCATION", pos })
       );
     } else {
-      alert("This site requires Geolocation! Please reload and try again.");
+      swal("This site requires Geolocation! Please reload and try again.");
     }
   };
 }
@@ -178,7 +178,7 @@ export function addVenueToUser(user, venue) {
       .then(res => res.json())
       .then(user => {
         if (user.error) {
-          alert(user.error);
+          swal(user.error);
         } else {
           let userdata = user.user.venues;
           dispatch({ type: "ADD_USER_VENUE", userdata });
