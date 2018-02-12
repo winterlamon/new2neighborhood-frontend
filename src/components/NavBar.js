@@ -14,11 +14,7 @@ class NavBar extends React.Component {
 
     return (
       <div>
-        <Navbar
-          className="grey darken-4 logo navbar"
-          brand="New2Neighborhood"
-          right
-        >
+        <Navbar className="grey darken-4 navbar" brand="New2Neighborhood" right>
           {loggedIn ? (
             <div>
               <NavItem
