@@ -22,16 +22,32 @@ class Login extends React.Component {
     this.setState({ fields: newField });
   };
 
+  validate = () => {
+    let messages = [];
+    if (this.state.fields.username === "") {
+      messages.push("• Email can't be blank!");
+    }
+    if (this.state.fields.password === "") {
+      messages.push("• Password can't be blank!");
+    }
+    return messages;
+  };
+
   handleSubmit = event => {
     event.preventDefault();
-    this.props.login(this.state.fields).then(res => {
-      if (res.error) {
-        this.setState({ error: true }, swal(res.error));
-      } else {
-        this.props.setCoords();
-        this.props.history.push("/dashboard");
-      }
-    });
+    let messages = this.validate();
+    if (messages.length > 0) {
+      swal("Oh No!", messages.join("\r\n"));
+    } else {
+      this.props.signup(this.state.fields).then(res => {
+        if (res.error) {
+          this.setState({ error: true }, swal(res.error));
+        } else {
+          this.props.setCoords();
+          this.props.history.push("/dashboard");
+        }
+      });
+    }
   };
 
   render() {
