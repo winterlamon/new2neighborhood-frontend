@@ -32,12 +32,12 @@ class Signup extends React.Component {
     if (this.state.fields.lastName === "") {
       messages.push("• Last Name can't be blank!");
     }
-    if (this.state.fields.email === "") {
+    if (this.state.fields.username === "") {
       messages.push("• Email can't be blank!");
     }
     if (
       !/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-        this.state.fields.email
+        this.state.fields.username
       )
     ) {
       messages.push("• Must be a valid email!");
@@ -58,15 +58,14 @@ class Signup extends React.Component {
     if (messages.length > 0) {
       swal("Oh No!", messages.join("\r\n"));
     } else {
-      console.log("will submit");
-      // this.props.signup(this.state.fields).then(res => {
-      //   if (res.error) {
-      //     this.setState({ error: true }, swal(res.error));
-      //   } else {
-      //     this.props.history.push("/dashboard");
-      //     this.props.setCoords();
-      //   }
-      // });
+      this.props.signup(this.state.fields).then(res => {
+        if (res.error) {
+          this.setState({ error: true }, swal(res.error));
+        } else {
+          this.props.history.push("/dashboard");
+          this.props.setCoords();
+        }
+      });
     }
   };
 
