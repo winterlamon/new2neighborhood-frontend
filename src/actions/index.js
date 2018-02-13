@@ -21,10 +21,14 @@ export function login({ username, password }) {
     })
       .then(res => res.json())
       .then(user => {
-        let userdata = user.user;
-        localStorage.setItem("token", user.token);
-        dispatch({ type: "SET_CURRENT_USER", userdata });
-        return userdata;
+        if (user.error) {
+          swal(user.error);
+        } else {
+          let userdata = user.user;
+          localStorage.setItem("token", user.token);
+          dispatch({ type: "SET_CURRENT_USER", userdata });
+          return userdata;
+        }
       });
   };
 }
