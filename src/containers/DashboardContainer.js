@@ -6,6 +6,7 @@ import { Col, Row } from "react-materialize";
 import VenueContainer from "./VenueContainer";
 import MapContainer from "./MapContainer";
 import UserContainer from "./UserContainer";
+import swal from "sweetalert";
 
 class DashboardContainer extends React.Component {
   state = {
@@ -15,6 +16,29 @@ class DashboardContainer extends React.Component {
     zip: "",
     radius: "1",
     section: "food"
+  };
+
+  validate = () => {
+    let messages = [];
+    if (this.state.address === "") {
+      messages.push("• Address can't be blank!");
+    }
+    if (this.state.city === "") {
+      messages.push("• City can't be blank!");
+    }
+    if (this.state.state === "") {
+      messages.push("• State can't be blank!");
+    }
+    if (!/^[A-Za-z]{2}$/.test(this.state.state)) {
+      messages.push("• State must be an abbreviation of 2 characters!");
+    }
+    if (this.state.zip === "") {
+      messages.push("• Zip can't be blank!");
+    }
+    if (!/^[0-9]{5}$/.test(this.state.zip)) {
+      messages.push("• Zip must be 5 digits in length!");
+    }
+    return messages;
   };
 
   getVenuesByLocation = () => {
@@ -27,14 +51,20 @@ class DashboardContainer extends React.Component {
   };
 
   getVenuesByAddress = () => {
-    this.props.searchVenuesByAddress(
-      this.state.address,
-      this.state.city,
-      this.state.state,
-      this.state.zip,
-      this.state.radius,
-      this.state.section
-    );
+    let messages = this.validate();
+    if (messages.length > 0) {
+      swal("Oh No!", messages.join("\r\n"));
+    } else {
+      this.props.searchVenuesByAddress(
+        this.state.address,
+        this.state.city,
+        this.state.state,
+        this.state.zip,
+        this.state.radius,
+        this.state.section
+      );
+      this.props.setSearched();
+    }
   };
 
   buttonHandler = event => {
@@ -45,7 +75,6 @@ class DashboardContainer extends React.Component {
       this.props.setSearched();
       this.props.clearMarkers();
     } else {
-      this.props.setSearched();
       this.getVenuesByAddress();
     }
   };

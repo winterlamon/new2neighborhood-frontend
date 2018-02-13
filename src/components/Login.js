@@ -39,7 +39,7 @@ class Login extends React.Component {
     if (messages.length > 0) {
       swal("Oh No!", messages.join("\r\n"));
     } else {
-      this.props.signup(this.state.fields).then(res => {
+      this.props.login(this.state.fields).then(res => {
         if (res.error) {
           this.setState({ error: true }, swal(res.error));
         } else {

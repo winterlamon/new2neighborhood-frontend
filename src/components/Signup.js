@@ -62,8 +62,8 @@ class Signup extends React.Component {
         if (res.error) {
           this.setState({ error: true }, swal(res.error));
         } else {
-          this.props.history.push("/dashboard");
           this.props.setCoords();
+          this.props.history.push("/dashboard");
         }
       });
     }
