@@ -58,14 +58,9 @@ class Signup extends React.Component {
     if (messages.length > 0) {
       swal("Oh No!", messages.join("\r\n"));
     } else {
-      this.props.signup(this.state.fields).then(res => {
-        if (res.error) {
-          this.setState({ error: true }, swal(res.error));
-        } else {
-          this.props.setCoords();
-          this.props.history.push("/dashboard");
-        }
-      });
+      this.props.signup(this.state.fields);
+      this.props.setCoords();
+      this.props.history.push("/dashboard");
     }
   };
 
