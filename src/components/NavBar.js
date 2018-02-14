@@ -19,7 +19,7 @@ class NavBar extends React.Component {
             <div>
               <NavItem
                 onClick={() => {
-                  this.props.history.push("/login");
+                  this.props.history.push("/");
                   this.props.logoutUser();
                 }}
               >

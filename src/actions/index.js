@@ -1,6 +1,6 @@
 import swal from "sweetalert";
 
-const API_ROOT = `http://localhost:3001`;
+const API_ROOT = `https://dashboard.heroku.com/apps/new2neighborhood-api`;
 
 const token = localStorage.getItem("token");
 

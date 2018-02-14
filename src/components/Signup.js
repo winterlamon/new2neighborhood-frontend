@@ -46,7 +46,7 @@ class Signup extends React.Component {
       !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(this.state.fields.password)
     ) {
       messages.push(
-        "• Password must be a minimum of 8 characters in length, and contain at least one letter and number!"
+        "• Password must be a minimum of 8 characters and contain at least one letter and number!"
       );
     }
     return messages;
