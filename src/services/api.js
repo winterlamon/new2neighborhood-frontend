@@ -1,4 +1,4 @@
-const API_ROOT = `https://dashboard.heroku.com/apps/new2neighborhood-api`;
+const API_ROOT = `https://new2neighborhood-api.herokuapp.com`;
 
 const token = localStorage.getItem("token");
 
