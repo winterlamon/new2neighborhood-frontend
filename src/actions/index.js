@@ -2,12 +2,14 @@ import swal from "sweetalert";
 
 const API_ROOT = `https://new2neighborhood-api.herokuapp.com`;
 
-const token = localStorage.getItem("token");
+const getHeaders = () => {
+  const token = localStorage.getItem("token");
 
-const headers = {
-  "Content-Type": "application/json",
-  Accepts: "application/json",
-  Authorization: token
+  return {
+    "Content-Type": "application/json",
+    Accepts: "application/json",
+    Authorization: token
+  };
 };
 
 export function login({ username, password }) {
@@ -16,7 +18,7 @@ export function login({ username, password }) {
 
     return fetch(`${API_ROOT}/auth`, {
       method: "POST",
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify({ username, password })
     })
       .then(res => res.json())
@@ -38,7 +40,7 @@ export function signup({ firstName, lastName, username, password }) {
     dispatch({ type: "ASYNC_START" });
     return fetch(`${API_ROOT}/users`, {
       method: "POST",
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify({ firstName, lastName, username, password })
     })
       .then(res => res.json())
@@ -60,7 +62,7 @@ export function getCurrentUser() {
   return dispatch => {
     dispatch({ type: "ASYNC_START" });
     return fetch(`${API_ROOT}/current_user`, {
-      headers: headers
+      headers: getHeaders()
     })
       .then(res => res.json())
       .then(user => {
@@ -84,7 +86,7 @@ export function searchVenuesByLocation(lat, lon, radius, selection) {
   return dispatch => {
     return fetch(`${API_ROOT}/venues`, {
       method: "POST",
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify({
         lat: lat.toString(),
         lon: lon.toString(),
@@ -114,7 +116,7 @@ export function searchVenuesByAddress(
   return dispatch => {
     fetch(`${API_ROOT}/venues`, {
       method: "POST",
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify({
         address: address,
         city: city,
@@ -180,7 +182,7 @@ export function addVenueToUser(user, venue) {
   return dispatch => {
     return fetch(`${API_ROOT}/user_venues`, {
       method: "POST",
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify({ user_id: user.id, venue_id: venue.id })
     })
       .then(res => res.json())
@@ -201,7 +203,7 @@ export function updateUserVenue(venue) {
   return dispatch => {
     return fetch(`${API_ROOT}/user_venues/${venue.user_venue_id}`, {
       method: "PATCH",
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify({ visited: true })
     })
       .then(res => res.json())
@@ -217,7 +219,7 @@ export function deleteUserVenue(venue) {
   return dispatch => {
     return fetch(`${API_ROOT}/user_venues/${venue.user_venue_id}`, {
       method: "DELETE",
-      headers: headers,
+      headers: getHeaders(),
       body: JSON.stringify(venue)
     })
       .then(res => res.json())
