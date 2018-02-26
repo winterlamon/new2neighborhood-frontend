@@ -1,17 +1,19 @@
 const API_ROOT = `https://new2neighborhood-api.herokuapp.com`;
 
-const token = localStorage.getItem("token");
+const getHeaders = () => {
+  const token = localStorage.getItem("token");
 
-const headers = {
-  "Content-Type": "application/json",
-  Accepts: "application/json",
-  Authorization: token
+  return {
+    "Content-Type": "application/json",
+    Accepts: "application/json",
+    Authorization: token
+  };
 };
 
 const searchVenuesByLocation = (lat, lon, radius, selection) => {
   return fetch(`${API_ROOT}/venues`, {
     method: "POST",
-    headers: headers,
+    headers: getHeaders(),
     body: JSON.stringify({
       lat: lat,
       lon: lon,
@@ -31,7 +33,7 @@ const searchVenuesByAddress = (
 ) => {
   return fetch(`${API_ROOT}/venues`, {
     method: "POST",
-    headers: headers,
+    headers: getHeaders(),
     body: JSON.stringify({
       address: address,
       city: city,
@@ -46,7 +48,7 @@ const searchVenuesByAddress = (
 const login = (username, password) => {
   return fetch(`${API_ROOT}/auth`, {
     method: "POST",
-    headers: headers,
+    headers: getHeaders(),
     body: JSON.stringify({ username, password })
   }).then(res => res.json());
 };
@@ -54,7 +56,7 @@ const login = (username, password) => {
 const signup = (firstName, lastName, username, password) => {
   return fetch(`${API_ROOT}/users`, {
     method: "POST",
-    headers: headers,
+    headers: getHeaders(),
     body: JSON.stringify({ firstName, lastName, username, password })
   });
   // .then(res => res.json())
@@ -63,14 +65,14 @@ const signup = (firstName, lastName, username, password) => {
 
 const getCurrentUser = () => {
   return fetch(`${API_ROOT}/current_user`, {
-    headers: headers
+    headers: getHeaders()
   }).then(res => res.json());
 };
 
 const createUserVenues = (user, venue) => {
   return fetch(`${API_ROOT}/user_venues`, {
     method: "POST",
-    headers: headers,
+    headers: getHeaders(),
     body: JSON.stringify({ user_id: user.id, venue_id: venue.id })
     // }).then(res => res.json())
   });
@@ -79,7 +81,7 @@ const createUserVenues = (user, venue) => {
 const updateUserVenues = venue => {
   return fetch(`${API_ROOT}/user_venues/${venue.user_venue_id}`, {
     method: "PATCH",
-    headers: headers,
+    headers: getHeaders(),
     body: JSON.stringify({ visited: true })
     // }).then(res => res.json())
   });
@@ -88,7 +90,7 @@ const updateUserVenues = venue => {
 const deleteUserVenues = venue => {
   return fetch(`${API_ROOT}/user_venues/${venue.user_venue_id}`, {
     method: "DELETE",
-    headers: headers,
+    headers: getHeaders(),
     body: JSON.stringify(venue)
   })
     .then(res => res.json())
